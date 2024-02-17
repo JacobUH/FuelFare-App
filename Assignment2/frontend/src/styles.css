@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+
+/* body */
+
+body {
+    /* Replace the color stops and direction with your desired gradient values */
+    background: linear-gradient(to bottom, #1A936F, #76C991);
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    height: 100vh; /* Set height to 100% of the viewport height */
+    font-family: 'Kanit', sans-serif;
+  }
+
+.Home {
+    color: #F3E9D2;
+    text-align: center;
+}
+
+/* Nav */
+.navbar.navbar-expand-lg {
+    background-color: #13785A;
+    display: flex;
+}
+
+.navbar-brand {
+    color: #F3E9D2;
+}
+
+
+/* img */
+.img-fluid {
+    margin: 0 auto; /* This will horizontally center the image */
+    display: block; /* This ensures the margin property works correctly */
+}
+
+/* button */
+.btn.btn-primary {
+    background-color: #1A936F;
+    
+}
