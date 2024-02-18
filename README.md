@@ -11,25 +11,25 @@ Welcome to the repository for the COSC 4353 Software Design class project. This 
 
 ## Project Overview
 
-Add a brief description of the project and its objectives. Include any important information or context that will help readers understand the purpose of the repository.
+Our project aims to display the uses of software design in the modern world. Throughout the semester, we'll be collaboratively working on various assignments and building web applications to showcase our understanding of software design principles.
 
 ## Getting Started
 
-If there are any specific instructions or requirements for setting up the project locally, provide them here. This section can include details on how to install dependencies, run the project, or any other necessary steps.
+Please read the README.md files for each Assignment to make sure that you properly understand how each directory works in order to fully utilize applications or concepts within.
 
 ## Contribution Guidelines
 
-Outline how team members can contribute to the project. This can include information on branch naming conventions, coding standards, and the process for submitting pull requests.
+- TBA
 
 ## Project Structure
 
-Briefly describe the structure of the repository. Highlight important directories or files that are key to understanding the project's organization.
+Our repository is strucutred based off the courseload of the class. Inside you will find web applications and documents tailored to prompts given throughout the semester. Hope this serves whoever needs it at a high level!
 
 ## Contact
 
 Feel free to reach out to any of our emails below!
 
-- Jacob Rangel [](https://jacobrangel0628@gmail.com)
-- Rebecca Santos [](https://rebeccamsantos7@gmail.com)
-- Sean Eppling [](https://epplingsean@gmail.com)
-- Anthony Delgado [](https://anthonyd4101@gmail.com)
+- Jacob Rangel [jacobrangel0628@gmail.com](https://jacobrangel0628@gmail.com)
+- Rebecca Santos [rebeccamsantos7@gmail.com](https://rebeccamsantos7@gmail.com)
+- Sean Eppling [pplingsean@gmail.com](https://epplingsean@gmail.com)
+- Anthony Delgado [anthonyd4101@gmail.com](https://anthonyd4101@gmail.com)
