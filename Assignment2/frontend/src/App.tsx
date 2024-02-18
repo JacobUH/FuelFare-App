@@ -1,18 +1,37 @@
 import { Navbar } from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Contributions from "./pages/Contributions";
+import Settings from "./pages/Settings";
 
 function App() {
-  return (
-    <div className="Home">
-      <Navbar>Generic Gas Company</Navbar>
-      <h1>Find the best fuel prices for you</h1>
-      <img className="img-fluid" src="./images/Tint.png"></img>
-      <div className="d-grid gap-2 col-2 mx-auto">
-        <button className="btn btn-primary" type="button">
-          Start Here
-        </button>
-      </div>
-    </div>
-  );
+  let component;
+
+  console.log(window.location);
+  switch (window.location.pathname) {
+    case "/": // Change this to the content you want for the home page
+      component = <Home />;
+      break;
+    case "/login":
+      component = <Login />;
+      break;
+    case "/contributions":
+      component = <Contributions />;
+      break;
+    case "/settings":
+      component = <Settings />;
+      break;
+    default:
+      component = (
+        <>
+          <Navbar />
+          <div>Page not found</div>
+        </>
+      ); // Handle other routes
+      break;
+  }
+
+  return <div>{component}</div>;
 }
 
 export default App;
