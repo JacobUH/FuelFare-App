@@ -8,6 +8,7 @@ Before you begin, ensure you have the following software installed on your machi
 
 - [Node.js](https://nodejs.org/) (version X or later)
 - [npm](https://www.npmjs.com/) (version X or later)
+  
 ## Installation
 
 1. Clone the repository:
@@ -15,7 +16,7 @@ Before you begin, ensure you have the following software installed on your machi
 
 - [HTTPS](https://github.com/JacobUH/TeamProject4353.git)
 - [SSH](git@github.com:JacobUH/TeamProject4353.git)
-- 
+  
 2. Install the dependencies:
 
    ```
