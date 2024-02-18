@@ -1,23 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
 
-/* body */
-
+/* All Pages */
 body {
-    /* Replace the color stops and direction with your desired gradient values */
-    background: linear-gradient(to bottom, #1A936F, #76C991);
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
-    height: 100vh; /* Set height to 100% of the viewport height */
     font-family: 'Kanit', sans-serif;
   }
+
+/* Home Page */
+.home-background {
+    background: linear-gradient(to bottom, #1A936F, #76C991); 
+    height: 100vh; /* Set height to 100% of the viewport height */
+}
 
 .Home {
     color: #F3E9D2;
     text-align: center;
 }
 
-/* Nav */
+
+/* Contributions Page */
+.contributions-background {
+    background: linear-gradient(to bottom, #88D498, #F3E9D2); 
+    height: 100vh;
+}
+
+.Contributions {
+    color: #114B5F;
+    text-align: center;
+}
+
+.extrabold-heading {
+    font-weight: 800;
+}
+
+/* Login Page */
+.login-background {
+    background: linear-gradient(to bottom, #C6DABF, #88D498); 
+    height: 100vh;
+}
+
+.Login {
+    color: #F3E9D2;
+    text-align: center;
+}
+
+
+/* Setup Page */
+.setup-background {
+    background: linear-gradient(to bottom, #88D498, #114B5F); 
+    height: 100vh;
+}
+
+/* Settings */
+.settings-background {
+    background-color: #1A936F;
+    height: 100vh;
+}
+
+.Settings {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Navbar */
 .navbar.navbar-expand-lg {
     background-color: #13785A;
     display: flex;
@@ -27,6 +74,10 @@ body {
     color: #F3E9D2;
 }
 
+/* cards */
+.card-body {
+    background-color: #F3E9D2;
+}
 
 /* img */
 .img-fluid {

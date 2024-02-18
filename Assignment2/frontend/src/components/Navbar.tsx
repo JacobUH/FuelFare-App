@@ -1,38 +1,39 @@
+import { Link } from "react-router-dom";
+
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
-      <div className="container">
+      <div className="container-fluid d-flex align-items-center justify-content-between">
         {/* Home icon on the left */}
-        <a className="navbar-brand" href="/">
+        <Link to="/" className="navbar-brand">
           <img src="/images/Home.png" width="30" height="24" />
-        </a>
+        </Link>
 
         {/* Company logo and title in the middle */}
-        <a className="navbar-brand">
-          {/*<img
-              src="/images/gas.jpg"
-              alt={children}
+        <Link to="/" className="navbar-brand">
+          Generic Gas Company
+        </Link>
+
+        {/* Contributors and Settings icons on the right */}
+        <div className="d-flex">
+          <Link to="/contributions" className="navbar-brand ">
+            <img
+              src="/images/Order.png"
+              alt={"Contributors"}
               width="30"
               height="24"
-              className="mr-2"
-             />*/}
-          Generic Gas Company
-        </a>
+            />
+          </Link>
 
-        {/* Contributors icon on the right */}
-        <a className="navbar-brand" href="/contributions">
-          <img src="/images/Order.png" alt={"Missing"} width="30" height="24" />
-        </a>
-
-        {/* Settings icon on the edge next to the contributors icon */}
-        <a className="navbar-brand" href="/settings">
-          <img
-            src="/images/Filter.png"
-            alt={"Missing"}
-            width="30"
-            height="24"
-          />
-        </a>
+          <Link to="/settings" className="navbar-brand">
+            <img
+              src="/images/Filter.png"
+              alt={"Settings"}
+              width="30"
+              height="24"
+            />
+          </Link>
+        </div>
       </div>
     </nav>
   );
