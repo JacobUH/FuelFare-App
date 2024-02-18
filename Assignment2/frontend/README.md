@@ -14,8 +14,8 @@ Before you begin, ensure you have the following software installed on your machi
 1. Clone the repository:
    (bash or zsh)
 
-- [HTTPS](https://github.com/JacobUH/TeamProject4353.git)
-- [SSH](git@github.com:JacobUH/TeamProject4353.git)
+- (https://github.com/JacobUH/TeamProject4353.git)
+- (git@github.com:JacobUH/TeamProject4353.git)
   
 2. Install the dependencies:
 
