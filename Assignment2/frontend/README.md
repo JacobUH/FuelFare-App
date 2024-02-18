@@ -8,26 +8,26 @@ Before you begin, ensure you have the following software installed on your machi
 
 - [Node.js](https://nodejs.org/) (version X or later)
 - [npm](https://www.npmjs.com/) (version X or later)
-  
+
 ## Installation
 
 1. Clone the repository:
    (bash or zsh)
-   
+
 ```
 - https://github.com/JacobUH/TeamProject4353.git
 - git@github.com:JacobUH/TeamProject4353.git
-````
-  
+```
+
 2. Install the dependencies:
 
- ```
- npm install
- ```
+```
+npm install
+```
 
 ## Running the Application
 
-Easily enough, we configured the environment well. Just run this simple command in your terminal of choice after completing the previous steps:
+Make sure once you download the repository to your local computer, be sure that you are in the ./frontend folder when running the application with the command below. Easily enough, we configured the environment well. Just run this simple command in your terminal of choice after completing the previous steps:
 
 ```
 npm run dev
