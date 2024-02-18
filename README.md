@@ -31,5 +31,5 @@ Feel free to reach out to any of our emails below!
 
 - Jacob Rangel [jacobrangel0628@gmail.com](https://jacobrangel0628@gmail.com)
 - Rebecca Santos [rebeccamsantos7@gmail.com](https://rebeccamsantos7@gmail.com)
-- Sean Eppling [pplingsean@gmail.com](https://epplingsean@gmail.com)
+- Sean Eppling [epplingsean@gmail.com](https://epplingsean@gmail.com)
 - Anthony Delgado [anthonyd4101@gmail.com](https://anthonyd4101@gmail.com)
