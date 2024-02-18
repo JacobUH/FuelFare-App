@@ -21,9 +21,9 @@ Before you begin, ensure you have the following software installed on your machi
   
 2. Install the dependencies:
 
-   ```
-   npm install
-   ```
+ ```
+ npm install
+ ```
 
 ## Running the Application
 
