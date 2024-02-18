@@ -1,4 +1,4 @@
-# React + TypeScript + Vite + Bootstrap ☘️
+# React + TypeScript + Vite + Bootstrap 🌿
 
 This template provides a minimal setup to get our application running on your local device!
 
@@ -16,14 +16,16 @@ Before you begin, ensure you have the following software installed on your machi
 
 - [HTTPS](https://github.com/JacobUH/TeamProject4353.git)
 - [SSH](git@github.com:JacobUH/TeamProject4353.git)
-- [Github CLI](gh repo clone JacobUH/TeamProject4353)
-
+- 
 2. Install the dependencies:
+
+   ```
    npm install
+   ```
 
 ## Running the Application
 
-Easily enough, we configigured the enviroment well. Just run this simple command in your terminal of choice after completing the previous steps:
+Easily enough, we configured the environment well. Just run this simple command in your terminal of choice after completing the previous steps:
 
 ```
 npm run dev
