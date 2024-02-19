@@ -12,7 +12,7 @@ export default function Home() {
       </h1>
       <img className="img-fluid" src="./images/Tint.png"></img>
       <div className="d-grid gap-2 col-2 mx-auto">
-        <Link to="/setup" className="btn btn-success my-4">
+        <Link to="/login" className="btn btn-success my-4">
           Start Here
         </Link>
       </div>

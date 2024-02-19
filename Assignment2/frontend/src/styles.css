@@ -32,7 +32,7 @@ body {
 }
 
 .extrabold-heading {
-    font-weight: 800;
+    font-weight: 1000;
 }
 
 /* Login Page */
@@ -42,8 +42,7 @@ body {
 }
 
 .Login {
-    color: #F3E9D2;
-    text-align: center;
+    color: #000000;
 }
 
 
@@ -89,4 +88,8 @@ body {
 .btn.btn-primary {
     background-color: #1A936F;
     
+}
+
+.mb-6 {
+    margin-bottom: 1 !important;
 }
