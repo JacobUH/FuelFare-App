@@ -1,6 +1,60 @@
 import { Navbar } from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function Setup() {
+  const states = [
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
+  ];
+
   return (
     <div
       className={`Setup ${
@@ -16,17 +70,13 @@ export default function Setup() {
             <form className="row g-3">
               <form className="row g-3">
                 <div className="col-md-6">
-                  <label htmlFor="inputEmail4" className="form-label">
+                  <label htmlFor="inputName" className="form-label">
                     Company Name
                   </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="inputEmail4"
-                  />
+                  <input type="text" className="form-control" id="inputName" />
                 </div>
 
-                <div className="col-12">
+                <div className="col-6">
                   <label htmlFor="inputAddress" className="form-label">
                     Company Address
                   </label>
@@ -51,7 +101,9 @@ export default function Setup() {
                   </label>
                   <select id="inputState" className="form-select">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    {states.map((state, index) => (
+                      <option key={index}>{state}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -61,7 +113,8 @@ export default function Setup() {
                   </label>
                   <select id="inputState" className="form-select">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    <option>United States</option>
+                    <option>Others Here...</option>
                   </select>
                 </div>
 
@@ -73,9 +126,13 @@ export default function Setup() {
                 </div>
 
                 <div className="col-12">
-                  <button type="submit" className="btn btn-success">
+                  <Link
+                    to="/dashboard"
+                    type="submit"
+                    className="btn btn-success"
+                  >
                     Sign in
-                  </button>
+                  </Link>
                 </div>
               </form>
             </form>
