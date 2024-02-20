@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
-
 /* All Pages */
 body {
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
     font-family: 'Kanit', sans-serif;
+    overflow: hidden;
   }
+
 
 /* Home Page */
 .home-background {
     background: linear-gradient(to bottom, #1A936F, #76C991); 
     height: 100vh; /* Set height to 100% of the viewport height */
+
 }
 
 .Home {
@@ -19,11 +21,18 @@ body {
     text-align: center;
 }
 
+.home-button {
+    border-radius: 60px;
+    border: 2px solid #114B5F;
+    color: #F3E9D2;
+    box-shadow: 0px 3px 4px rgba(0,0,0,.25);
+}
+
 
 /* Contributions Page */
 .contributions-background {
     background: linear-gradient(to bottom, #88D498, #F3E9D2); 
-    height: 100vh;
+    height: 100vh; /* Set height to 100% of the viewport height */
 }
 
 .Contributions {
@@ -45,6 +54,13 @@ body {
     color: #000000;
 }
 
+.btn-login-pg {
+    background-color: #C6DABF;
+    color: #114B5F;
+
+    margin-top: 1em;
+    width: 100%;
+}
 
 /* Setup Page */
 .setup-background {
@@ -63,19 +79,39 @@ body {
     text-align: center;
 }
 
+/* Dashboard */
+.dashboard-background {
+    background-color: #13785A;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-button {
+    background-color: #333;
+    border-color: #333;
+}
+
 /* Navbar */
 .navbar.navbar-expand-lg {
     background-color: #13785A;
     display: flex;
 }
 
-.navbar-brand {
-    color: #F3E9D2;
+/* cards */
+.card {
+    margin: auto;
+    margin-top: 10%;
+    width: 70%;
+    height: 80%;
+    border-radius: 30px;
 }
 
-/* cards */
 .card-body {
     background-color: #F3E9D2;
+    border-radius: 30px;
 }
 
 /* img */
