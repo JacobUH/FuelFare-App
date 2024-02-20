@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
-
 /* All Pages */
 body {
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
     font-family: 'Kanit', sans-serif;
+    overflow: hidden;
   }
+
 
 /* Home Page */
 .home-background {
     background: linear-gradient(to bottom, #1A936F, #76C991); 
+    height: 100vh; /* Set height to 100% of the viewport height */
+
 }
 
 .Home {
@@ -69,14 +72,20 @@ body {
     text-align: center;
 }
 
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-button {
+    background-color: #333;
+    border-color: #333;
+}
+
 /* Navbar */
 .navbar.navbar-expand-lg {
     background-color: #13785A;
     display: flex;
-}
-
-.navbar-brand {
-    color: #F3E9D2;
 }
 
 /* cards */
