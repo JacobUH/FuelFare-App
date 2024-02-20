@@ -3,7 +3,11 @@ import { Footer } from "../components/Footer";
 
 export default function Dashboard() {
   return (
-    <div className="Dashboard">
+    <div 
+    className={`Dashboard ${
+      location.pathname === "/dashboard" ? "dashboard-background" : ""
+    }`}
+    >
       <Navbar />
       <h1 className="my-4">Dashboard</h1>
       <Footer color="#093d2e" />
