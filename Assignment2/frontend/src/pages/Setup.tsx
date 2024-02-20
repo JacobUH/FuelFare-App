@@ -71,8 +71,8 @@ export default function Setup() {
     >
       <Navbar />
       <div className="container mt-5">
-        <div className="card mx-auto" style={{ maxWidth: "1000px", borderRadius: 40 }}>
-          <div className="card-body" style={{ borderRadius: 40 }}>
+        <div className="card mx-auto" style={{ maxWidth: "1000px", borderRadius: 30 }}>
+          <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Setup Account</h1>
 
             <form className="row g-3">
@@ -176,7 +176,7 @@ export default function Setup() {
               </div>
 
               <div className="col-12">
-                <Link to="/dashboard" type="submit" className="btn btn-success">
+                <Link to="/dashboard" type="submit" className="btn btn-login-pg">
                   Setup Account
                 </Link>
               </div>
