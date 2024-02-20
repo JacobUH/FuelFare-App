@@ -9,12 +9,10 @@ export const Navbar = () => {
           <img src="/images/Home.png" width="30" height="24" alt="Home" />
         </Link>
 
-        {/* Centered Logo and Company Name */}
-        <div className="d-flex align-items-center">
-          {/* Company logo and title in the middle */}
-          <Link to="/" className="navbar-brand">
-            Generic Gas Company
-          </Link>
+        {/* Logo Icon and Company Name */}
+        <div className="navbar-brand text" style={{ color: "#F3E9D2" }}>
+          {/*<img src="/images/gas.png" width="30" height="30" /> */}
+          Generic Gas Company
         </div>
 
         {/* Contributors and Settings icons on the right */}

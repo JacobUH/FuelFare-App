@@ -88,10 +88,6 @@ body {
     display: flex;
 }
 
-.navbar-brand {
-    color: #F3E9D2;
-}
-
 /* cards */
 .card-body {
     background-color: #F3E9D2;
