@@ -54,6 +54,13 @@ body {
     color: #000000;
 }
 
+.btn-login-pg {
+    background-color: #C6DABF;
+    color: #114B5F;
+
+    margin-top: 1em;
+    width: 100%;
+}
 
 /* Setup Page */
 .Setup {
@@ -84,6 +91,11 @@ body {
     text-align: center;
 }
 
+/* Dashboard */
+.dashboard-background {
+    background-color: #13785A;
+}
+
 .dark-mode {
     background-color: #333;
     color: #fff;
@@ -101,8 +113,17 @@ body {
 }
 
 /* cards */
+.card {
+    margin: auto;
+    margin-top: 10%;
+    width: 70%;
+    height: 80%;
+    border-radius: 30px;
+}
+
 .card-body {
     background-color: #F3E9D2;
+    border-radius: 30px;
 }
 
 /* img */
