@@ -37,16 +37,6 @@ body {
     text-align: center;
 }
 
-/*.cont-card {
-    display: grid;
-    grid-template-columns: 80% auto;
-}*/
-
-/* Styling for Names in Contributions Table */
-/*td > h1 {
-    text-align: left;
-}*/
-
 .extrabold-heading {
     font-weight: 1000;
 }
