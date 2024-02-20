@@ -14,7 +14,7 @@ export default function Login() {
           <div className="col-md-4 mb-4">
             <div className="card">
               <div className="card-body">
-                <h1 className="my-4">Sign Up</h1>
+                <h1 className="my-4 text-center" style={{color:'rgb(17,75,95)'}}>Sign Up</h1>
                 <form>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
@@ -43,9 +43,11 @@ export default function Login() {
                       id="exampleInputPassword1"
                     />
                   </div>
-                  <Link to="/setup" className="btn btn-success">
-                    Sign Up
-                  </Link>
+                    <div className="text-center">
+                      <Link to="/setup" className="btn btn-login-pg">
+                        Sign Up
+                      </Link>
+                    </div>
                 </form>
               </div>
             </div>
@@ -54,7 +56,7 @@ export default function Login() {
           <div className="col-md-4 mb-4">
             <div className="card">
               <div className="card-body">
-                <h1 className="my-4">Login</h1>
+                <h1 className="my-4 text-center" style={{color:'rgb(17,75,95)'}}>Login</h1>
                 <form>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
@@ -83,9 +85,11 @@ export default function Login() {
                       id="exampleInputPassword1"
                     />
                   </div>
-                  <Link to="/dashboard" className="btn btn-success">
-                    Login
-                  </Link>
+                  <div className = "text-center">
+                    <Link to="/dashboard" className="btn btn-login-pg">
+                      Login
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>
