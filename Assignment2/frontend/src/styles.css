@@ -79,7 +79,33 @@ body {
 
 /* Dashboard */
 .dashboard-background {
-    background-color: #13785A;
+    background-color: #1A936F;
+    height: 100vh;
+}
+
+.dashboard-btns {
+    margin: auto;
+    margin-top: 5vh;
+    width: 50vh;
+    height: 50vh;
+    background-color: #C6DABF;
+    color: #114B5F;
+    border-radius: 15px;
+    border: 3px solid #114B5F;
+    font-size: 32pt;
+    padding-top: 12vh;
+}
+
+.dashboard-btns:hover {
+    background-color: #F3E9D2;
+    color: #114B5F;
+    border: 3px solid #114B5F;
+}
+
+/* History */
+.history-background{
+    background-color: #C6DABF;
+    height: 100vh;
 }
 
 .dark-mode {
