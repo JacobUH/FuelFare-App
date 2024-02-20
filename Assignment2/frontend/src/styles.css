@@ -5,15 +5,13 @@ body {
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
     font-family: 'Kanit', sans-serif;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
-
 
 /* Home Page */
 .home-background {
     background: linear-gradient(to bottom, #1A936F, #76C991); 
     height: 100vh; /* Set height to 100% of the viewport height */
-
 }
 
 .Home {
