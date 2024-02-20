@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 export default function Settings() {
   const [darkMode, setDarkMode] = useState(() => {
     // Check localStorage for saved preference
-
     const savedDarkMode = localStorage.getItem("darkMode");
 
     // Return the saved preference or default to false
@@ -41,7 +40,6 @@ export default function Settings() {
         >
           {darkMode ? "Dark Mode" : "Standard Mode"}
         </button>
-        {/* Other settings options go here */}
       </div>
       <Footer />
     </div>

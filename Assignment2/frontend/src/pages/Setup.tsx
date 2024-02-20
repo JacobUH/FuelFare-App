@@ -58,10 +58,10 @@ export default function Setup() {
   ];
 
   /* Hooks for setting input constraints */
-  const [nameMaxLength, setNameMaxLength] = useState(50);
-  const [addressMaxLength, setAddressMaxLength] = useState(100);
-  const [cityMaxLength, setCityMaxLength] = useState(100);
-  const [zipcodeMaxLength, setzipcodeMaxLength] = useState(9);
+  const [nameMaxLength] = useState(50);
+  const [addressMaxLength] = useState(100);
+  const [cityMaxLength] = useState(100);
+  const [zipcodeMaxLength] = useState(9);
 
   return (
     <div

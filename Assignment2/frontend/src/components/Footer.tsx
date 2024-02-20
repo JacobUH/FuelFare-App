@@ -1,5 +1,5 @@
 interface FooterProps {
-  color?: string; // Optional background color prop
+  color?: string;
 }
 
 export const Footer: React.FC<FooterProps> = ({ color }) => {
