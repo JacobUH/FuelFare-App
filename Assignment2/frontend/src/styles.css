@@ -32,7 +32,7 @@ body {
 /* Contributions Page */
 .contributions-background {
     background: linear-gradient(to bottom, #88D498, #F3E9D2); 
-    height: 100vh; /* Set height to 100% of the viewport height */
+    height: 100vh; 
 }
 
 .Contributions {
@@ -56,6 +56,18 @@ body {
 
 
 /* Setup Page */
+.Setup {
+    color: #114B5F;
+}
+
+.Setup label {
+    color:#000000;
+}
+
+.row input, .row select { /* Borders for Inputs */
+    border: 1px solid #114B5F;
+}
+
 .setup-background {
     background: linear-gradient(to bottom, #88D498, #114B5F); 
     height: 100vh;
