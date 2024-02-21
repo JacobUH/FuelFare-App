@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import History from "./pages/History";
 import View from "./pages/View";
 import New from "./pages/New";
+import UpdateAccount from "./pages/UpdateAccount";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/view" element={<View />} />
           <Route path="/new" element={<New />} />
+          <Route path="/updateAccount" element={<UpdateAccount />} />
         </Routes>
       </div>
     </>

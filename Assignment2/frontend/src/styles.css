@@ -30,7 +30,7 @@ body {
 /* Contributions Page */
 .contributions-background {
     background: linear-gradient(to bottom, #88D498, #F3E9D2); 
-    height: 100vh; /* Set height to 100% of the viewport height */
+    height: 100vh; 
 }
 
 .Contributions {
@@ -55,12 +55,24 @@ body {
 .btn-login-pg {
     background-color: #C6DABF;
     color: #114B5F;
-
+    box-shadow: 0px 3px 4px rgba(0,0,0,.25);
     margin-top: 1em;
     width: 100%;
 }
 
 /* Setup Page */
+.Setup {
+    color: #114B5F;
+}
+
+.Setup label {
+    color:#000000;
+}
+
+.row input, .row select { /* Borders for Inputs */
+    border: 1px solid #114B5F;
+}
+
 .setup-background {
     background: linear-gradient(to bottom, #88D498, #114B5F); 
     height: 100vh;
@@ -140,6 +152,12 @@ body {
 .dark-button {
     background-color: #333;
     border-color: #333;
+}
+
+/* Update Account Page */
+.update-background {
+    background: linear-gradient(to bottom, #114B5F, #88D498); 
+    height: 100vh;
 }
 
 /* Navbar */
