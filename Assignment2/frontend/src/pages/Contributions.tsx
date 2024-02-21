@@ -11,7 +11,7 @@ export default function Contributions() {
       <h1 className="my-4 extrabold-heading">Web Application Created By</h1>
       <div className="container mt-5">
         <div className="card mx-auto" style={{ maxWidth: "1200px", borderRadius: 50 }}>
-          <div className="card-body container" style={{ borderRadius: 50 }}>
+          <div className="card-body" style={{ borderRadius: 50 }}>
             <div className="row">
               <div className="col-1"></div>
               <div className="col-8 text-start"><h1>Jacob Rangel</h1></div>

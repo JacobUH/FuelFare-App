@@ -5,15 +5,13 @@ body {
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
     font-family: 'Kanit', sans-serif;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
-
 
 /* Home Page */
 .home-background {
     background: linear-gradient(to bottom, #1A936F, #76C991); 
     height: 100vh; /* Set height to 100% of the viewport height */
-
 }
 
 .Home {
@@ -32,7 +30,7 @@ body {
 /* Contributions Page */
 .contributions-background {
     background: linear-gradient(to bottom, #88D498, #F3E9D2); 
-    height: 100vh; /* Set height to 100% of the viewport height */
+    height: 100vh; 
 }
 
 .Contributions {
@@ -57,12 +55,24 @@ body {
 .btn-login-pg {
     background-color: #C6DABF;
     color: #114B5F;
-
+    box-shadow: 0px 3px 4px rgba(0,0,0,.25);
     margin-top: 1em;
     width: 100%;
 }
 
 /* Setup Page */
+.Setup {
+    color: #114B5F;
+}
+
+.Setup label {
+    color:#000000;
+}
+
+.row input, .row select { /* Borders for Inputs */
+    border: 1px solid #114B5F;
+}
+
 .setup-background {
     background: linear-gradient(to bottom, #88D498, #114B5F); 
     height: 100vh;
@@ -81,7 +91,57 @@ body {
 
 /* Dashboard */
 .dashboard-background {
-    background-color: #13785A;
+    background-color: #1A936F;
+    height: 100vh;
+}
+
+.dashboard-btns {
+    margin: auto;
+    margin-top: 5vh;
+    width: 50vh;
+    height: 50vh;
+    background-color: #C6DABF;
+    color: #114B5F;
+    border-radius: 15px;
+    border: 3px solid #114B5F;
+    font-size: 32pt;
+    padding-top: 12vh;
+}
+
+.dashboard-btns:hover {
+    background-color: #F3E9D2;
+    color: #114B5F;
+    border: 3px solid #114B5F;
+}
+
+/* History */
+.history-background {
+    background-color: #C6DABF;
+    height: 100vh;
+}
+
+.hist-card {
+    background-color: lightgray;
+    margin: auto;
+    width: 200vh;
+    height: 75vh;
+    border: 1px solid #114B5F;
+    border-radius: 10px;
+}
+
+.table-area {
+    background-color: white;
+    margin: auto;
+    margin-top: 15vh;
+    width: 190vh;
+    height: 57vh;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.table tr {
+    border-bottom: 1px solid gray; /* Change the color of the horizontal lines */
+    height: 30px;
 }
 
 .dark-mode {
@@ -94,10 +154,17 @@ body {
     border-color: #333;
 }
 
+
 /* View Page */
 .view-background {
     background: linear-gradient(to bottom, #C6DABF, #C6DABF); 
     height: 100vh
+}
+
+/* Update Account Page */
+.update-background {
+    background: linear-gradient(to bottom, #114B5F, #88D498); 
+    height: 100vh;
 }
 
 /* Navbar */
