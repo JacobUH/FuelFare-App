@@ -154,6 +154,13 @@ body {
     border-color: #333;
 }
 
+
+/* View Page */
+.view-background {
+    background: linear-gradient(to bottom, #C6DABF, #C6DABF); 
+    height: 100vh
+}
+
 /* Update Account Page */
 .update-background {
     background: linear-gradient(to bottom, #114B5F, #88D498); 
@@ -177,6 +184,12 @@ body {
 
 .card-body {
     background-color: #F3E9D2;
+    border-radius: 30px;
+}
+
+/* grid */
+.col-xs {
+    background-color: #FFFFFF;
     border-radius: 30px;
 }
 
