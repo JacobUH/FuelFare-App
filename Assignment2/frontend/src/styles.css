@@ -105,9 +105,33 @@ body {
 }
 
 /* History */
-.history-background{
+.history-background {
     background-color: #C6DABF;
     height: 100vh;
+}
+
+.hist-card {
+    background-color: lightgray;
+    margin: auto;
+    width: 200vh;
+    height: 75vh;
+    border: 1px solid #114B5F;
+    border-radius: 10px;
+}
+
+.table-area {
+    background-color: white;
+    margin: auto;
+    margin-top: 15vh;
+    width: 190vh;
+    height: 57vh;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.table tr {
+    border-bottom: 1px solid gray; /* Change the color of the horizontal lines */
+    height: 30px;
 }
 
 .dark-mode {
