@@ -130,6 +130,12 @@ body {
     border-color: #333;
 }
 
+/* Update Account Page */
+.update-background {
+    background: linear-gradient(to bottom, #114B5F, #88D498); 
+    height: 100vh;
+}
+
 /* Navbar */
 .navbar.navbar-expand-lg {
     background-color: #13785A;
