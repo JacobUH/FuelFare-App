@@ -1,5 +1,4 @@
 import { Navbar } from "../components/Navbar";
-import { Link } from "react-router-dom";
 
 export default function History() {
 
@@ -22,7 +21,7 @@ export default function History() {
                     <th style={{ textAlign: "right" }}>Estimated Quote</th>
                   </tr>
                 </thead>
-                
+
                 <tbody>
                   <tr>
                     <td></td>
