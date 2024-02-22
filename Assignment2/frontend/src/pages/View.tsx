@@ -16,27 +16,27 @@ export default function View() {
 
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                Estimated Quote:
+                <div className="ps-1">Estimated Quote:</div>
               </div>
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                Date: 
+                <div className="ps-1">Date:</div>
               </div>
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                Gallons Requested: 
+              <div className="ps-1">Gallons Requested:</div> 
               </div>
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                Fuel Type: 
+                <div className="ps-1">Fuel Type:</div> 
               </div>
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                Address: 
+                <div className="ps-1">Address:</div>
               </div>
             </div>
       
@@ -44,7 +44,12 @@ export default function View() {
         </div>
         <div style = {{ position: "absolute", right: "10px", bottom: "10px" }}>
           <Link to="/history" className="btn btn-success bottom-0 end-0">
-                    Back
+            History
+          </Link>
+        </div>
+        <div style = {{ position: "absolute", right: "95px", bottom: "10px" }}>
+          <Link to="/dashboard" className="btn btn-success bottom-0 end-0">
+            Dashboard
           </Link>
         </div>
       </div>
