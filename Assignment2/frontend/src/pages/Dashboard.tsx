@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   return (
-    <div className={`Dashboard ${
-      location.pathname === "/dashboard" ? "dashboard-background" : ""
-    }`}
+    <div
+      className={`Dashboard ${
+        location.pathname === "/dashboard" ? "dashboard-background" : ""
+      }`}
     >
       <Navbar />
       <h1 className="mt-3 text-center">Dashboard</h1>
@@ -23,7 +24,7 @@ export default function Dashboard() {
           </Link>
         </div>
       </div>
-      <Footer color="#093d2e" />
+      <Footer />
     </div>
   );
 }

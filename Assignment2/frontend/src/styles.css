@@ -1,17 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+:root {
+    --gradient: linear-gradient(
+    45deg,
+    #1a515d, 
+    #155340, 
+    #1A936F, 
+    #76C991, 
+    #1A936F, 
+    #0b3c2d, 
+    #114B5f);}
 
 /* All Pages */
 body {
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
     font-family: 'Kanit', sans-serif;
-    /*overflow: hidden;*/
+    overflow: hidden;
   }
 
 /* Home Page */
+/* background: linear-gradient(to bottom, #1A936F, #76C991);*/
 .home-background {
-    background: linear-gradient(to bottom, #1A936F, #76C991); 
-    height: 100vh; /* Set height to 100% of the viewport height */
+    background-image: var(--gradient);
+    background-size: 400%;
+    min-height: 100vh;
+    animation: gradientAnimation 10s infinite; /* Adjust the duration as needed */
 }
 
 .Home {
@@ -26,6 +39,17 @@ body {
     box-shadow: 0px 3px 4px rgba(0,0,0,.25);
 }
 
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 /* Contributions Page */
 .contributions-background {
@@ -171,6 +195,8 @@ body {
 .navbar.navbar-expand-lg {
     background-color: #13785A;
     display: flex;
+    max-height: 60px; /* Adjust the value as needed */
+    overflow: hidden;
 }
 
 /* cards */
@@ -199,12 +225,9 @@ body {
     display: block; /* This ensures the margin property works correctly */
 }
 
-/* button */
-.btn.btn-primary {
-    background-color: #1A936F;
-    
-}
+
 
 .mb-6 {
     margin-bottom: 1 !important;
 }
+

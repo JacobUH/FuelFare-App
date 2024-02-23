@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div
-      className={`Home ${location.pathname === "/" ? "home-background" : ""}`}
+      className={`Home ${
+        location.pathname === "/" ? "home-background main-content" : ""
+      }`}
     >
       <Navbar />
       <h1
@@ -17,7 +19,7 @@ export default function Home() {
       <img
         className="img-fluid"
         src="./images/Tint.png"
-        style={{ borderRadius: 25 }}
+        style={{ borderRadius: 25, width: "70%", maxWidth: "100%" }}
         alt="Tint"
       />
       <div className="d-grid gap-2 col-2 mx-auto">

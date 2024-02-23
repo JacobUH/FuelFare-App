@@ -1,18 +1,36 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
+  const logoStyle: React.CSSProperties = {
+    color: "#F3E9D2",
+    transition: "transform 0.3s", // Added transition property
+  };
+
+  const handleLogoHover = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.transform = "scale(1.1)"; // Increase the scale on hover
+  };
+
+  const handleLogoLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.transform = "scale(1)"; // Reset the scale on leave
+  };
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid d-flex align-items-center justify-content-between">
         {/* Home icon on the left */}
-        <Link to="/" className="navbar-brand" style={{ marginRight: "80px" }}>
+        <Link to="/" className="navbar-brand" style={{ marginRight: "85px" }}>
           <img src="/images/Home.png" width="30" height="24" alt="Home" />
         </Link>
 
         {/* Logo Icon and Company Name */}
-        <div className="navbar-brand text" style={{ color: "#F3E9D2" }}>
-          {/*<img src="/images/gas.png" width="30" height="30" /> */}
-          Generic Gas Company
+        <div
+          className="navbar-brand text"
+          style={logoStyle}
+          onMouseOver={handleLogoHover}
+          onMouseLeave={handleLogoLeave}
+        >
+          <img src="/fuelfare_logo.svg" width="130" height="130" alt="Logo" />
         </div>
 
         {/* Contributors and Settings icons on the right */}

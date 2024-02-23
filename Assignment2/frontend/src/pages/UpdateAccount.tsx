@@ -72,7 +72,10 @@ export default function UpdateAccount() {
     >
       <Navbar />
       <div className="container mt-5">
-        <div className="card mx-auto" style={{ maxWidth: "1000px", borderRadius: 30 }}>
+        <div
+          className="card mx-auto"
+          style={{ maxWidth: "1000px", borderRadius: 30 }}
+        >
           <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Update User Info</h1>
 
@@ -177,20 +180,24 @@ export default function UpdateAccount() {
                 />
               </div>
 
-            <h1 className="Setup">Update Password</h1>
-            <div>
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-              />
-            </div>
+              <h1 className="Setup">Update Password</h1>
+              <div>
+                <label htmlFor="exampleInputPassword1" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="exampleInputPassword1"
+                />
+              </div>
 
               <div className="col-12">
-                <Link to="/dashboard" type="submit" className="btn btn-login-pg">
+                <Link
+                  to="/dashboard"
+                  type="submit"
+                  className="btn btn-login-pg"
+                >
                   Confirm Changes
                 </Link>
               </div>
