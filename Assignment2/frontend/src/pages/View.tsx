@@ -12,14 +12,8 @@ export default function View() {
       <Navbar />
       {/*<h1>View</h1>*/}
       <div className="container-xl">
-        <div
-          className="card"
-          style={{ maxWidth: "2000px", borderRadius: "15px" }}
-        >
-          <div
-            className="card-body"
-            style={{ backgroundColor: "#88D498", borderRadius: "10px" }}
-          >
+        <div className="card" style={{ maxWidth: "2000px", borderRadius: "10px", backgroundColor: "#88D498" }}>
+          <div className="card-body" style = {{ backgroundColor: "#88D498", borderRadius: "10px" }}>
             <p className="card-title fs-2">Quote ID: </p>
 
             <div className="row pb-1 mx-1">
