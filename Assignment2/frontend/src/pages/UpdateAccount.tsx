@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import BackButton from "../components/BackButton";
 
 export default function UpdateAccount() {
   const states = [
@@ -71,6 +72,8 @@ export default function UpdateAccount() {
       }`}
     >
       <Navbar />
+      <BackButton />
+      
       <div className="mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 mb-4">
@@ -82,6 +85,7 @@ export default function UpdateAccount() {
                 >
                   Update User Info
                 </h1>
+                
                 <form className="row g-3">
                   <div className="col-md-6">
                     <label htmlFor="inputFullName" className="form-label">
@@ -94,7 +98,7 @@ export default function UpdateAccount() {
                       placeholder="John Smith"
                       maxLength={nameMaxLength}
                     />
-                  </div>
+                  </div
 
                   <div className="col-md-6">
                     <label htmlFor="inputName" className="form-label">

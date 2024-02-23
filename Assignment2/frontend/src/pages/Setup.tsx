@@ -1,9 +1,16 @@
 import { Navbar } from "../components/Navbar";
+import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Setup() {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // Go back one step in history
+  };
+
   const states = [
     "AL",
     "AK",
@@ -71,10 +78,14 @@ export default function Setup() {
       }`}
     >
       <Navbar />
+      <BackButton />
       <div className="container mt-5">
-        <div className="card mx-auto" style={{ maxWidth: "1000px", borderRadius: 30 }}>
+        <div
+          className="card mx-auto no-margin-top"
+          style={{ maxWidth: "1000px", borderRadius: 30 }}
+        >
           <div className="card-body" style={{ borderRadius: 30 }}>
-            <h1 className="my-4 Setup">Setup Account</h1>
+            <h1 className="Setup">Setup Account</h1>
 
             <form className="row g-3">
               <div className="col-md-6">
@@ -178,7 +189,11 @@ export default function Setup() {
               </div>
 
               <div className="col-12">
-                <Link to="/dashboard" type="submit" className="btn btn-login-pg">
+                <Link
+                  to="/dashboard"
+                  type="submit"
+                  className="btn btn-login-pg"
+                >
                   Setup Account
                 </Link>
               </div>
