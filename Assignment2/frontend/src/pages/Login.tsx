@@ -1,6 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 export default function Login() {
   return (
@@ -10,7 +11,8 @@ export default function Login() {
       }`}
     >
       <Navbar />
-      <div className="mt-5">
+      <BackButton />
+      <div>
         <div className="row justify-content-center">
           <div className="col-md-4 mb-4">
             <div className="card">

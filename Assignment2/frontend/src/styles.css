@@ -159,7 +159,7 @@ body {
     background-color: white;
     margin: auto;
     margin-top: 15vh;
-    width: 190vh;
+    width: 100vh;
     height: 57vh;
     border: 1px solid gray;
     border-radius: 10px;
@@ -209,6 +209,10 @@ body {
     height: 80%;
     border-radius: 30px;
 }
+
+.no-margin-top {
+    margin-top: 0;
+  }
 
 .card-body {
     background-color: #F3E9D2;
