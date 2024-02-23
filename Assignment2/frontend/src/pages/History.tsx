@@ -1,17 +1,22 @@
+import BackButton from "../components/BackButton";
 import { Navbar } from "../components/Navbar";
 
 export default function History() {
-
   return (
-    <div className={`History ${
-      location.pathname === "/history" ? "history-background" : ""
-    }`}
+    <div
+      className={`History ${
+        location.pathname === "/history" ? "history-background" : ""
+      }`}
     >
       <Navbar />
+      <BackButton />
       <h1 className="mt-3 text-center">History Page</h1>
       <div className="mt-4">
         <div className="row justify-content-center">
           <div className="hist-card">
+            <div className="btn btn-primary">
+              All Quotes
+            </div>
             <div className="table-area">
               <table className="table">
                 <thead>
@@ -21,38 +26,7 @@ export default function History() {
                     <th style={{ textAlign: "right" }}>Estimated Quote</th>
                   </tr>
                 </thead>
-
                 <tbody>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
                 </tbody>
               </table>
             </div>

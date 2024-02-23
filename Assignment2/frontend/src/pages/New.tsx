@@ -2,6 +2,9 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
+import BackButton from "../components/BackButton";
+
 export default function New() {
   
   return (
@@ -11,8 +14,12 @@ export default function New() {
       }`}
     >
       <Navbar />
+      <BackButton />
       <div className="container mt-5">
-        <div className="card mx-auto mb-5" style={{ maxWidth: "1000px", borderRadius: 30 }}>
+        <div
+          className="card mx-auto no-margin-top"
+          style={{ maxWidth: "1000px", borderRadius: 30 }}
+        >
           <div className="card-body px-5" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Create a New Quote</h1>
 
@@ -33,7 +40,10 @@ export default function New() {
                 <label htmlFor="inputFuel" className="form-label">
                   Fuel Type
                 </label>
-                <select className="form-select" aria-label="Default select example">
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                >
                   <option selected>Fuel Type</option>
                   <option value="1">Regular</option>
                   <option value="2">Mid</option>
@@ -46,24 +56,41 @@ export default function New() {
                 <label htmlFor="PricePerGallon" className="form-label">
                   Market Price per Gallon
                 </label>
-                <input className="form-control" type="text" value="Insert Price Here" aria-label="Disabled input example" disabled readOnly />
+                <input
+                  className="form-control"
+                  type="text"
+                  value="Insert Price Here"
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly
+                />
               </div>
 
               <div className="col-lg-9">
                 <label htmlFor="companyAddress" className="form-label">
-                  Company Address 
+                  Company Address
                 </label>
-                <input className="form-control" type="text" value="Insert Address Here" aria-label="Disabled input example" disabled readOnly />
+                <input
+                  className="form-control"
+                  type="text"
+                  value="Insert Address Here"
+                  aria-label="Disabled input example"
+                  disabled
+                  readOnly
+                />
               </div>
 
               {/*<div className="w-100"></div>*/}
 
               <div className="col-md-4">
                 <label htmlFor="inputDate" className="form-label">
-                    Delivery Date
+                  Delivery Date
                 </label>
                 <div className="input-group">
-                  <select className="form-select" aria-label="Default select example">
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
                     <option selected>Month</option>
                     <option value="1">Jan</option>
                     <option value="2">Feb</option>
@@ -78,8 +105,15 @@ export default function New() {
                     <option value="11">Nov</option>
                     <option value="12">Dec</option>
                   </select>
-                  <input type="num" className="form-control" aria-label="Text input with 2 dropdown buttons"/>
-                  <select className="form-select" aria-label="Default select example">
+                  <input
+                    type="num"
+                    className="form-control"
+                    aria-label="Text input with 2 dropdown buttons"
+                  />
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
                     <option selected>Year</option>
                     <option value="1">2024</option>
                     <option value="2">2025</option>

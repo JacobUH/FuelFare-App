@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import BackButton from "../components/BackButton";
 
 export default function Contributions() {
   return (
@@ -9,6 +10,7 @@ export default function Contributions() {
       }`}
     >
       <Navbar />
+      <BackButton />
       <h1 className="my-4 extrabold-heading">Web Application Created By</h1>
       <div className="container mt-5">
         <div

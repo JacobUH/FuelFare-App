@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function View() {
   return (
-    <div className={`View ${
-      location.pathname === "/view" ? "view-background" : ""
-    }`}>
+    <div
+      className={`View ${
+        location.pathname === "/view" ? "view-background" : ""
+      }`}
+    >
       <Navbar />
       {/*<h1>View</h1>*/}
       <div className="container-xl">
@@ -26,12 +28,12 @@ export default function View() {
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-              <div className="ps-1">Gallons Requested:</div> 
+                <div className="ps-1">Gallons Requested:</div>
               </div>
             </div>
             <div className="row pb-1 mx-1">
               <div className="col-xs text-black fs-5 p-1">
-                <div className="ps-1">Fuel Type:</div> 
+                <div className="ps-1">Fuel Type:</div>
               </div>
             </div>
             <div className="row pb-1 mx-1">
@@ -39,15 +41,14 @@ export default function View() {
                 <div className="ps-1">Address:</div>
               </div>
             </div>
-      
           </div>
         </div>
-        <div style = {{ position: "absolute", right: "10px", bottom: "10px" }}>
+        <div style={{ position: "absolute", right: "10px", bottom: "10px" }}>
           <Link to="/history" className="btn btn-success bottom-0 end-0">
             History
           </Link>
         </div>
-        <div style = {{ position: "absolute", right: "95px", bottom: "10px" }}>
+        <div style={{ position: "absolute", right: "95px", bottom: "10px" }}>
           <Link to="/dashboard" className="btn btn-success bottom-0 end-0">
             Dashboard
           </Link>
