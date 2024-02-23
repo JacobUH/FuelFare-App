@@ -1,69 +1,9 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export default function New() {
-  const states = [
-    "AL",
-    "AK",
-    "AZ",
-    "AR",
-    "CA",
-    "CO",
-    "CT",
-    "DE",
-    "FL",
-    "GA",
-    "HI",
-    "ID",
-    "IL",
-    "IN",
-    "IA",
-    "KS",
-    "KY",
-    "LA",
-    "ME",
-    "MD",
-    "MA",
-    "MI",
-    "MN",
-    "MS",
-    "MO",
-    "MT",
-    "NE",
-    "NV",
-    "NH",
-    "NJ",
-    "NM",
-    "NY",
-    "NC",
-    "ND",
-    "OH",
-    "OK",
-    "OR",
-    "PA",
-    "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UT",
-    "VT",
-    "VA",
-    "WA",
-    "WV",
-    "WI",
-    "WY",
-  ];
-
-  /* Hooks for setting input constraints */
-  const [nameMaxLength] = useState(50);
-  const [addressMaxLength] = useState(100);
-  const [cityMaxLength] = useState(100);
-  const [zipcodeMaxLength] = useState(9);
-  const [zipcodeMinLength] = useState(5);
-
+  
   return (
     <div
       className={`New ${
@@ -72,7 +12,7 @@ export default function New() {
     >
       <Navbar />
       <div className="container mt-5">
-        <div className="card mx-auto" style={{ maxWidth: "1000px", borderRadius: 30 }}>
+        <div className="card mx-auto mb-5" style={{ maxWidth: "1000px", borderRadius: 30 }}>
           <div className="card-body px-5" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Create a New Quote</h1>
 
