@@ -19,7 +19,7 @@ export default function Home() {
       <img
         className="img-fluid"
         src="./images/Tint.png"
-        /*style={{ borderRadius: 25, width: "70%", maxWidth: "100%" }}*/
+        style={{ borderRadius: 25 }}
         alt="Tint"
       />
       <div className="d-grid gap-2 col-2 mx-auto">

@@ -10,8 +10,14 @@ export default function Dashboard() {
       }`}
     >
       <Navbar />
-      <h1 className="mt-3 text-center">Dashboard</h1>
-      <div className="mt-5">
+      <h1
+        className="mt-5 text-center"
+        style={{ color: "#F3E9D2", fontStyle: "italic", fontWeight: "bold" }}
+      >
+        Welcome!
+      </h1>
+
+      <div className="mt-3">
         <div className="row justify-content-center">
           <Link to="/new" className="btn text-center dashboard-btns">
             Get Your Fuel Quote Now

@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid d-flex align-items-center justify-content-between">
         {/* Home icon on the left */}
-        <Link to="/" className="navbar-brand" style={{ marginRight: "85px" }}>
+        <Link to="/" className="navbar-brand" style={{ marginRight: "88px" }}>
           <img src="/images/Home.png" width="30" height="24" alt="Home" />
         </Link>
 
