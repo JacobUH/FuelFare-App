@@ -149,20 +149,60 @@ body {
 .hist-card {
     background-color: lightgray;
     margin: auto;
-    width: 200vh;
+    width: 95%;
+    max-width: 800px; /* Limit maximum width for better readability */
+    height: auto;
     height: 75vh;
     border: 1px solid #114B5F;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adjustments for smallest screens */
+@media screen and (max-height: 555px) {
+    .hist-card {
+        max-width: 80%; /* Adjust the max-width as needed for smaller screens */
+    }
+}
+
+/* Adjustments for even really smaller screens */
+@media screen and (min-height: 556px) {
+    .hist-card {
+        max-width: 80%; /* Adjust the max-width as needed for smaller screens */
+    }
+}
+  
+/* Adjustments for even smaller screens */
+@media screen and (min-height: 696px) {
+    .hist-card {
+        max-width: 90%; /* Adjust the max-width as needed for smaller screens */
+    }
+}
+
+@media screen and (min-height: 800px) {
+    .hist-card {
+        max-width: 100%; /* Adjust the max-width as needed for medium screens */
+    }
+}
+
+.btn-primary {
+    margin-top: 4vh;
+    background-color: darkgray;
+    border-color: darkgray;
+    width: 13vh;
 }
 
 .table-area {
     background-color: white;
     margin: auto;
-    margin-top: 15vh;
-    width: 100vh;
-    height: 57vh;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+    width: 100%;
+    height: auto;
     border: 1px solid gray;
     border-radius: 10px;
+    flex-grow: 1;
 }
 
 .table tr {

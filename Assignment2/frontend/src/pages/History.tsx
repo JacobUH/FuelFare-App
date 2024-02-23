@@ -14,6 +14,9 @@ export default function History() {
       <div className="mt-4">
         <div className="row justify-content-center">
           <div className="hist-card">
+            <div className="btn btn-primary">
+              All Quotes
+            </div>
             <div className="table-area">
               <table className="table">
                 <thead>
@@ -23,38 +26,7 @@ export default function History() {
                     <th style={{ textAlign: "right" }}>Estimated Quote</th>
                   </tr>
                 </thead>
-
                 <tbody>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
