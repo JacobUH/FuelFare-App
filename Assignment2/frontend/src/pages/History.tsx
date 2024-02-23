@@ -12,6 +12,9 @@ export default function History() {
       <div className="mt-4">
         <div className="row justify-content-center">
           <div className="hist-card">
+            <div className="btn btn-primary">
+              All Quotes
+            </div>
             <div className="table-area">
               <table className="table">
                 <thead>

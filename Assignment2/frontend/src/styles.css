@@ -186,10 +186,17 @@ body {
     }
 }
 
+.btn-primary {
+    margin-top: 4vh;
+    background-color: darkgray;
+    border-color: darkgray;
+    width: 13vh;
+}
+
 .table-area {
     background-color: white;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 1vh;
     margin-bottom: 3vh;
     width: 100%;
     height: auto;
