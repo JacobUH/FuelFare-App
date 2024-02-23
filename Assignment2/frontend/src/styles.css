@@ -18,12 +18,22 @@ body {
     overflow: hidden;
   }
 
+@media screen and (max-height: 864px) {
+  body {
+    /*zoom: 0.8;*/
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    font-family: 'Kanit', sans-serif;
+    overflow: hidden;
+  }
+}
+
 /* Home Page */
 /* background: linear-gradient(to bottom, #1A936F, #76C991);*/
 .home-background {
     background-image: var(--gradient);
     background-size: 400%;
-    min-height: 100vh;
+    min-height: 200vh;
     animation: gradientAnimation 10s infinite; /* Adjust the duration as needed */
 }
 
@@ -219,15 +229,21 @@ body {
     border-radius: 30px;
 }
 
-/* img */
+/* Default styling for the image */
 .img-fluid {
-    margin: 0 auto; /* This will horizontally center the image */
-    display: block; /* This ensures the margin property works correctly */
+    max-width: 100%;
+    height: auto;
+}
+  
+/* Adjustments for smaller screens */
+@media screen and (min-height: 576px) {
+    .img-fluid {
+        max-width: 80%; /* Adjust the max-width as needed for smaller screens */
+    }
 }
 
-
-
-.mb-6 {
-    margin-bottom: 1 !important;
+@media screen and (min-height: 768px) {
+    .img-fluid {
+        max-width: 70%; /* Adjust the max-width as needed for medium screens */
+    }
 }
-

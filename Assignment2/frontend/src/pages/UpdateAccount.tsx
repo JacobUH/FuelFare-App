@@ -77,7 +77,7 @@ export default function UpdateAccount() {
           style={{ maxWidth: "1000px", borderRadius: 30 }}
         >
           <div className="card-body" style={{ borderRadius: 30 }}>
-            <h1 className="my-4 Setup">Update User Info</h1>
+            <h1 className="my-1 Setup">Update User Info</h1>
 
             <form className="row g-3">
               <div className="col-md-6">
