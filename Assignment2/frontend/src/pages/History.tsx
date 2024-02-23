@@ -1,5 +1,5 @@
-import BackButton from "../components/BackButton";
 import { Navbar } from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function History() {
   return (
@@ -9,14 +9,16 @@ export default function History() {
       }`}
     >
       <Navbar />
-      <BackButton />
-      <h1 className="mt-3 text-center">History Page</h1>
+      <Link
+        to="/dashboard"
+        className="btn btn-secondary my-4 setup-back-button ms-3"
+      >
+        Back
+      </Link>
       <div className="mt-4">
         <div className="row justify-content-center">
           <div className="hist-card">
-            <div className="btn btn-primary">
-              All Quotes
-            </div>
+            <div className="btn btn-primary">All Quotes</div>
             <div className="table-area">
               <table className="table">
                 <thead>
@@ -26,8 +28,7 @@ export default function History() {
                     <th style={{ textAlign: "right" }}>Estimated Quote</th>
                   </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           </div>

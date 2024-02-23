@@ -73,11 +73,11 @@ export default function UpdateAccount() {
     >
       <Navbar />
       <BackButton />
-      
+
       <div className="mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6 mb-4">
-            <div className="card">
+            <div className="card no-margin-top">
               <div className="card-body">
                 <h1
                   className="my-4 text-center"
@@ -85,7 +85,7 @@ export default function UpdateAccount() {
                 >
                   Update User Info
                 </h1>
-                
+
                 <form className="row g-3">
                   <div className="col-md-6">
                     <label htmlFor="inputFullName" className="form-label">
@@ -98,7 +98,7 @@ export default function UpdateAccount() {
                       placeholder="John Smith"
                       maxLength={nameMaxLength}
                     />
-                  </div
+                  </div>
 
                   <div className="col-md-6">
                     <label htmlFor="inputName" className="form-label">
@@ -157,8 +157,8 @@ export default function UpdateAccount() {
                     </label>
                     <select id="inputState" className="form-select">
                       <option selected>Choose...</option>
-                        {states.map((state, index) => (
-                      <option key={index}>{state}</option>
+                      {states.map((state, index) => (
+                        <option key={index}>{state}</option>
                       ))}
                     </select>
                   </div>
@@ -197,7 +197,7 @@ export default function UpdateAccount() {
           </div>
 
           <div className="col-md-6 mb-4">
-            <div className="card">
+            <div className="card no-margin-top">
               <div className="card-body">
                 <h1
                   className="my-4 text-center"
@@ -207,7 +207,7 @@ export default function UpdateAccount() {
                 </h1>
                 <form>
                   <div className="mb-3">
-                  <label
+                    <label
                       htmlFor="exampleInputPassword1"
                       className="form-label"
                     >
@@ -220,7 +220,7 @@ export default function UpdateAccount() {
                     />
                   </div>
                   <div className="mb-3">
-                  <label
+                    <label
                       htmlFor="exampleInputPassword1"
                       className="form-label"
                     >

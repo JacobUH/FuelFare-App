@@ -195,6 +195,11 @@ body {
     width: 13vh;
 }
 
+.btn-primary:hover {
+    background-color: #13785A; /* Change to the desired success color */
+    border-color: #02310e; /* Change to the desired success color */
+}
+
 .table-area {
     background-color: white;
     margin: auto;
@@ -225,7 +230,7 @@ body {
 
 /* View Page */
 .view-background {
-    background: linear-gradient(to bottom, #88D498, #1A936F); 
+    background: linear-gradient(to bottom, #88D498, #116149); 
     height: 100vh
 }
 
