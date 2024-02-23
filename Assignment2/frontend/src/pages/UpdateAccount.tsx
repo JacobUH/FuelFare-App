@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import BackButton from "../components/BackButton";
 
 export default function UpdateAccount() {
   const states = [
@@ -71,9 +72,10 @@ export default function UpdateAccount() {
       }`}
     >
       <Navbar />
+      <BackButton />
       <div className="container mt-5">
         <div
-          className="card mx-auto"
+          className="card mx-auto no-margin-top"
           style={{ maxWidth: "1000px", borderRadius: 30 }}
         >
           <div className="card-body" style={{ borderRadius: 30 }}>

@@ -250,6 +250,10 @@ body {
     border-radius: 30px;
 }
 
+.no-margin-top {
+    margin-top: 0;
+  }
+
 .card-body {
     background-color: #F3E9D2;
     border-radius: 30px;

@@ -1,6 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { useState, useEffect } from "react";
+import BackButton from "../components/BackButton";
 
 export default function Settings() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -27,6 +28,7 @@ export default function Settings() {
       } ${darkMode ? "dark-mode" : ""}`}
     >
       <Navbar />
+      <BackButton />
       <div className="container">
         <h1 className="my-4">Settings</h1>
 

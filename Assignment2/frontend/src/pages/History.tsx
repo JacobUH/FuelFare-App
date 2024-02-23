@@ -1,13 +1,15 @@
+import BackButton from "../components/BackButton";
 import { Navbar } from "../components/Navbar";
 
 export default function History() {
-
   return (
-    <div className={`History ${
-      location.pathname === "/history" ? "history-background" : ""
-    }`}
+    <div
+      className={`History ${
+        location.pathname === "/history" ? "history-background" : ""
+      }`}
     >
       <Navbar />
+      <BackButton />
       <h1 className="mt-3 text-center">History Page</h1>
       <div className="mt-4">
         <div className="row justify-content-center">
