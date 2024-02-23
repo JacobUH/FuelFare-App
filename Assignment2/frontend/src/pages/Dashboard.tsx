@@ -6,7 +6,7 @@ export default function Dashboard() {
   return (
     <div
       className={`Dashboard ${
-        location.pathname === "/dashboard" ? "dashboard-background" : ""
+        location.pathname === "/dashboard" ? "dashboard-background main-content" : ""
       }`}
     >
       <Navbar />

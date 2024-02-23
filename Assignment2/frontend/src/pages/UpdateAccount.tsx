@@ -73,137 +73,186 @@ export default function UpdateAccount() {
     >
       <Navbar />
       <BackButton />
-      <div className="container mt-5">
-        <div
-          className="card mx-auto no-margin-top"
-          style={{ maxWidth: "1000px", borderRadius: 30 }}
-        >
-          <div className="card-body" style={{ borderRadius: 30 }}>
-            <h1 className="my-1 Setup">Update User Info</h1>
-
-            <form className="row g-3">
-              <div className="col-md-6">
-                <label htmlFor="inputFullName" className="form-label">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputFullName"
-                  placeholder="John Smith"
-                  maxLength={nameMaxLength}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label htmlFor="inputName" className="form-label">
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputName"
-                  placeholder="John's Apple Farm"
-                  maxLength={nameMaxLength}
-                />
-              </div>
-
-              <div className="col-6">
-                <label htmlFor="inputAddress" className="form-label">
-                  Company Address 1
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputAddress"
-                  placeholder="1234 Main St"
-                  maxLength={addressMaxLength}
-                />
-              </div>
-
-              <div className="col-6">
-                <label htmlFor="inputAddress" className="form-label">
-                  Company Address 2
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputAddress"
-                  placeholder="1234 Main St"
-                  maxLength={addressMaxLength}
-                />
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="inputCity" className="form-label">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputCity"
-                  maxLength={cityMaxLength}
-                />
-              </div>
-
-              <div className="col-md-2">
-                <label htmlFor="inputState" className="form-label">
-                  State
-                </label>
-                <select id="inputState" className="form-select">
-                  <option selected>Choose...</option>
-                  {states.map((state, index) => (
-                    <option key={index}>{state}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="col-md-4">
-                <label htmlFor="inputState" className="form-label">
-                  Country
-                </label>
-                <select id="inputState" className="form-select">
-                  <option selected>Choose...</option>
-                  <option>United States</option>
-                  <option>Others Here...</option>
-                </select>
-              </div>
-
-              <div className="col-md-2">
-                <label htmlFor="inputZip" className="form-label">
-                  Zip
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputZip"
-                  minLength={zipcodeMinLength}
-                  maxLength={zipcodeMaxLength}
-                />
-              </div>
-
-              <h1 className="Setup">Update Password</h1>
-              <div>
-                <label htmlFor="exampleInputPassword1" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                />
-              </div>
-
-              <div className="col-12">
-                <Link
-                  to="/dashboard"
-                  type="submit"
-                  className="btn btn-login-pg"
+      
+      <div className="mt-5">
+        <div className="row justify-content-center">
+          <div className="col-md-6 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h1
+                  className="my-4 text-center"
+                  style={{ color: "rgb(17,75,95)" }}
                 >
-                  Confirm Changes
-                </Link>
+                  Update User Info
+                </h1>
+                
+                <form className="row g-3">
+                  <div className="col-md-6">
+                    <label htmlFor="inputFullName" className="form-label">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputFullName"
+                      placeholder="John Smith"
+                      maxLength={nameMaxLength}
+                    />
+                  </div
+
+                  <div className="col-md-6">
+                    <label htmlFor="inputName" className="form-label">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputName"
+                      placeholder="John's Apple Farm"
+                      maxLength={nameMaxLength}
+                    />
+                  </div>
+
+                  <div className="col-6">
+                    <label htmlFor="inputAddress" className="form-label">
+                      Company Address 1
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputAddress"
+                      placeholder="1234 Main St"
+                      maxLength={addressMaxLength}
+                    />
+                  </div>
+
+                  <div className="col-6">
+                    <label htmlFor="inputAddress" className="form-label">
+                      Company Address 2
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputAddress"
+                      placeholder="1234 Main St"
+                      maxLength={addressMaxLength}
+                    />
+                  </div>
+
+                  <div className="col-md-3">
+                    <label htmlFor="inputCity" className="form-label">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputCity"
+                      maxLength={cityMaxLength}
+                    />
+                  </div>
+
+                  <div className="col-md-2">
+                    <label htmlFor="inputState" className="form-label">
+                      State
+                    </label>
+                    <select id="inputState" className="form-select">
+                      <option selected>Choose...</option>
+                        {states.map((state, index) => (
+                      <option key={index}>{state}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="col-md-4">
+                    <label htmlFor="inputState" className="form-label">
+                      Country
+                    </label>
+                    <select id="inputState" className="form-select">
+                      <option selected>Choose...</option>
+                      <option>United States</option>
+                      <option>Others Here...</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-2">
+                    <label htmlFor="inputZip" className="form-label">
+                      Zip
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputZip"
+                      minLength={zipcodeMinLength}
+                      maxLength={zipcodeMaxLength}
+                    />
+                  </div>
+                  <div className="text-center">
+                    <Link to="/dashboard" className="btn btn-login-pg">
+                      Confirm Changes
+                    </Link>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
+          </div>
+
+          <div className="col-md-6 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h1
+                  className="my-4 text-center"
+                  style={{ color: "rgb(17,75,95)" }}
+                >
+                  Update Password
+                </h1>
+                <form>
+                  <div className="mb-3">
+                  <label
+                      htmlFor="exampleInputPassword1"
+                      className="form-label"
+                    >
+                      Current Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword1"
+                    />
+                  </div>
+                  <div className="mb-3">
+                  <label
+                      htmlFor="exampleInputPassword1"
+                      className="form-label"
+                    >
+                      New Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword1"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label
+                      htmlFor="exampleInputPassword1"
+                      className="form-label"
+                    >
+                      Confirm New Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword1"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <Link to="/dashboard" className="btn btn-login-pg">
+                      Confirm Changes
+                    </Link>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

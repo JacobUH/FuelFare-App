@@ -117,8 +117,10 @@ body {
 
 /* Dashboard */
 .dashboard-background {
-    background-color: #1A936F;
-    height: 100vh;
+    background-image: var(--gradientHome);
+    background-size: 400%;
+    min-height: 200vh;
+    animation: gradientAnimationHome 10s infinite;
 }
 
 .dashboard-btns {
@@ -142,7 +144,7 @@ body {
 
 /* History */
 .history-background {
-    background-color: #C6DABF;
+    background: linear-gradient(to bottom, #88D498, #1A936F);
     height: 100vh;
 }
 
