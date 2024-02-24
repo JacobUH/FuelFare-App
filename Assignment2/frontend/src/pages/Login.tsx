@@ -11,7 +11,7 @@ export default function Login() {
       }`}
     >
       <Navbar />
-      <BackButton />
+      <BackButton className="ms-3" />
       <div>
         <div className="row justify-content-center">
           <div className="col-md-4 mb-4">

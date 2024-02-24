@@ -78,7 +78,7 @@ export default function Setup() {
       }`}
     >
       <Navbar />
-      <BackButton />
+      <BackButton className="ms-3" />
       <div className="container mt-5">
         <div
           className="card mx-auto no-margin-top"
