@@ -1,10 +1,59 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+
+interface FormData {
+  fullName: string;
+  companyName: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+}
 
 export default function Setup() {
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    companyName: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: ""
+  });
+
+  const navigate = useNavigate();
+
+  // Update state 'formData' based on user input
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission process
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios.post('/api/setup', formData)
+      .then(response => {
+        if(response.status === 200) {
+          navigate('/dashboard');
+        } else {
+          throw new Error('Failed to setup new account');
+        }
+      })
+
+      .catch(error => {
+        console.error('Error setting up new account:', error);
+      });
+  };
+
   const states = [
     "AL",
     "AK",
@@ -81,7 +130,7 @@ export default function Setup() {
           <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="Setup">Setup Account</h1>
 
-            <form className="row g-3">
+            <form className="row g-3" onSubmit={handleSubmit}>
               <div className="col-md-6">
                 <label htmlFor="inputFullName" className="form-label">
                   Full Name
@@ -92,6 +141,9 @@ export default function Setup() {
                   id="inputFullName"
                   placeholder="John Smith"
                   maxLength={nameMaxLength}
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -105,6 +157,9 @@ export default function Setup() {
                   id="inputName"
                   placeholder="John's Apple Farm"
                   maxLength={nameMaxLength}
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -118,6 +173,9 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
+                  name="address1"
+                  value={formData.address1}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -131,6 +189,9 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
+                  name="address2"
+                  value={formData.address2}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -143,6 +204,9 @@ export default function Setup() {
                   className="form-control"
                   id="inputCity"
                   maxLength={cityMaxLength}
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -150,7 +214,7 @@ export default function Setup() {
                 <label htmlFor="inputState" className="form-label">
                   State
                 </label>
-                <select id="inputState" className="form-select">
+                <select id="inputState" className="form-select" name="state" value={formData.state} onChange={handleInputChange}>
                   <option selected>Choose...</option>
                   {states.map((state, index) => (
                     <option key={index}>{state}</option>
@@ -162,7 +226,7 @@ export default function Setup() {
                 <label htmlFor="inputState" className="form-label">
                   Country
                 </label>
-                <select id="inputState" className="form-select">
+                <select id="inputState" className="form-select" name="country" value={formData.country} onChange={handleInputChange}>
                   <option selected>Choose...</option>
                   <option>United States</option>
                   <option>Others Here...</option>
@@ -179,17 +243,19 @@ export default function Setup() {
                   id="inputZip"
                   minLength={zipcodeMinLength}
                   maxLength={zipcodeMaxLength}
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleInputChange}
                 />
               </div>
 
               <div className="col-12">
-                <Link
-                  to="/dashboard"
+                <button
                   type="submit"
                   className="btn btn-login-pg"
                 >
                   Setup Account
-                </Link>
+                </button>
               </div>
             </form>
           </div>
