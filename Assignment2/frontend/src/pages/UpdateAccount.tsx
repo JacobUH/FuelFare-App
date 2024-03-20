@@ -72,7 +72,7 @@ export default function UpdateAccount() {
       }`}
     >
       <Navbar />
-      <BackButton />
+      <BackButton className="ms-3" />
 
       <div className="mt-5">
         <div className="row justify-content-center">

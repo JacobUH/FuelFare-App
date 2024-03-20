@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const BackButton: React.FC = () => {
+interface BackButtonProps {
+  className?: string;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ className }) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -11,7 +15,7 @@ const BackButton: React.FC = () => {
   return (
     <button
       onClick={handleBack}
-      className="btn btn-secondary my-4 setup-back-button ms-3"
+      className={`btn btn-secondary my-4 setup-back-button ${className}`}
     >
       Back
     </button>

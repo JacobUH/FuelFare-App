@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 
 export default function New() {
-  
   return (
     <div
       className={`New ${
@@ -13,7 +12,7 @@ export default function New() {
       }`}
     >
       <Navbar />
-      <BackButton />
+      <BackButton className="ms-3" />
       <div className="container mt-5">
         <div
           className="card mx-auto no-margin-top"
