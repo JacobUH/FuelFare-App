@@ -1,16 +1,10 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Setup() {
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate(-1); // Go back one step in history
-  };
-
   const states = [
     "AL",
     "AK",
