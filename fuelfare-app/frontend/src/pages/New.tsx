@@ -1,10 +1,34 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
-
 import BackButton from "../components/BackButton";
+import { useState } from "react";
+import axios from "axios";
+
+interface FormData {
+  numGallons: number;
+  fuelType: string;
+  month: string;
+  year: string;
+}
 
 export default function New() {
+  const [formData, setFormData] = useState<FormData>({
+    numGallons: 0,
+    fuelType: "",
+    month: "",
+    year: ""
+  });
+
+  //const navigate = useNavigate();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Add a handle form submission process
+
   return (
     <div
       className={`New ${
@@ -31,6 +55,9 @@ export default function New() {
                   className="form-control"
                   id="inputNum"
                   placeholder="100"
+                  name="numGallons"
+                  value={formData.numGallons}
+                  onChange={handleInputChange}
                 />
               </div>
 
