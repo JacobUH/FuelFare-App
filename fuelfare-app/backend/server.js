@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
 
 // Implement Routes Here (uncomment when implemented) //
 
+// const signUpRouter = require('./routes/signUpRoutes');
+// app.use('', signUpRouter);
+
 // const accountRouter = require('./routes/accountRoutes');
 // app.use('', accountRouter);
 
@@ -24,9 +27,6 @@ app.get('/', (req, res) => {
 
 // const signInRouter = require('./routes/signInRoutes');
 // app.use('', signInRouter);
-
-// const signUpRouter = require('./routes/signUpRoutes');
-// app.use('', signUpRouter);
 
 // Start Server
 app.listen(port, () => {

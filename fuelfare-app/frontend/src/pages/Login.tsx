@@ -1,9 +1,32 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
+import { useState } from "react";
+
+interface FormData {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
+  const [formData, setFormData] = useState<FormData> ({
+    email: "",
+    password: ""
+  });
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(`/setup?email=${formData.email}&password=${formData.password}`);
+  };
+
   return (
     <div
       className={`Login ${
@@ -23,7 +46,7 @@ export default function Login() {
                 >
                   Sign Up
                 </h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
                       Email address
@@ -33,6 +56,9 @@ export default function Login() {
                       className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                     />
                     <div id="emailHelp" className="form-text pb-3">
                       We'll never share your email with anyone else.
@@ -49,12 +75,15 @@ export default function Login() {
                       type="password"
                       className="form-control"
                       id="exampleInputPassword1"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="text-center">
-                    <Link to="/setup" className="btn btn-login-pg">
+                    <button type="submit" className="btn btn-login-pg">
                       Sign Up
-                    </Link>
+                    </button>
                   </div>
                 </form>
               </div>
