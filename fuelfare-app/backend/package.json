@@ -4,7 +4,7 @@
   "description": "the server package for our app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx vitest --coverage"
   },
   "keywords": [
     "express",
@@ -16,5 +16,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.4.0",
+    "vitest": "^1.4.0"
   }
 }
