@@ -1,9 +1,8 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
+import { useLocation } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 interface FormData {
   fullName: string;
@@ -28,7 +27,20 @@ export default function Setup() {
     zip: ""
   });
 
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const email = searchParams.get('email') || '';
+    const password = searchParams.get('password') || '';
+    
+    // Update component state with email and password
+    setFormData(prevState => ({
+      email,
+      password,
+      ...prevState
+    }));
+  }, [location.search]);
 
   // Update state 'formData' based on user input
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -36,23 +48,10 @@ export default function Setup() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission process
-  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    axios.post('/api/setup', formData)
-      .then(response => {
-        if(response.status === 200) {
-          navigate('/dashboard');
-        } else {
-          throw new Error('Failed to setup new account');
-        }
-      })
-
-      .catch(error => {
-        console.error('Error setting up new account:', error);
-      });
-  };
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+  
 
   const states = [
     "AL",
@@ -130,7 +129,7 @@ export default function Setup() {
           <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="Setup">Setup Account</h1>
 
-            <form className="row g-3" onSubmit={handleSubmit}>
+            <form className="row g-3">
               <div className="col-md-6">
                 <label htmlFor="inputFullName" className="form-label">
                   Full Name

@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "npx vitest --coverage"
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
   },
   "keywords": [
     "express",
@@ -14,11 +16,19 @@
   "author": "jacob",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^1.4.0",
     "vitest": "^1.4.0"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.0",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.2"
+    "nodemon": "^3.1.0"
   }
 }
