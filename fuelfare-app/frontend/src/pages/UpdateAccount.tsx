@@ -1,10 +1,44 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import BackButton from "../components/BackButton";
+import axios from "axios";
+
+interface FormData {
+  fullName: string;
+  companyName: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+}
 
 export default function UpdateAccount() {
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    companyName: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: ""
+  })
+
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Add a handle form submission process
+
+
   const states = [
     "AL",
     "AK",
@@ -97,6 +131,9 @@ export default function UpdateAccount() {
                       id="inputFullName"
                       placeholder="John Smith"
                       maxLength={nameMaxLength}
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -110,6 +147,9 @@ export default function UpdateAccount() {
                       id="inputName"
                       placeholder="John's Apple Farm"
                       maxLength={nameMaxLength}
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -123,6 +163,9 @@ export default function UpdateAccount() {
                       id="inputAddress"
                       placeholder="1234 Main St"
                       maxLength={addressMaxLength}
+                      name="address1"
+                      value={formData.address1}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -136,6 +179,9 @@ export default function UpdateAccount() {
                       id="inputAddress"
                       placeholder="1234 Main St"
                       maxLength={addressMaxLength}
+                      name="address2"
+                      value={formData.address2}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -148,6 +194,9 @@ export default function UpdateAccount() {
                       className="form-control"
                       id="inputCity"
                       maxLength={cityMaxLength}
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -184,6 +233,9 @@ export default function UpdateAccount() {
                       id="inputZip"
                       minLength={zipcodeMinLength}
                       maxLength={zipcodeMaxLength}
+                      name="zip"
+                      value={formData.zip}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="text-center">
