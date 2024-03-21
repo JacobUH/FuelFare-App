@@ -1,8 +1,8 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 interface FormData {
   fullName: string;
