@@ -1,11 +1,11 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import BackButton from "../components/BackButton";
 import axios from "axios";
 
-interface FormData {
+interface userFormData {
   fullName: string;
   companyName: string;
   address1: string;
@@ -16,8 +16,13 @@ interface FormData {
   zip: string;
 }
 
+interface passwordFormData {
+  newPassword: string;
+}
+
 export default function UpdateAccount() {
-  const [formData, setFormData] = useState<FormData>({
+  // User info form
+  const [formData, setFormData] = useState<userFormData>({
     fullName: "",
     companyName: "",
     address1: "",
@@ -28,15 +33,48 @@ export default function UpdateAccount() {
     zip: ""
   })
 
-
-  const navigate = useNavigate();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleUserInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Add a handle form submission process
+  const handleUserSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('api/addData', formData);
+      const newData = response.data;
+      //const updatedData = [...data, ...newData];
+      //setData(updatedData);
+    } 
+    catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  // Password info form
+  const [pwdFormData, setPwdFormData] = useState<passwordFormData>({
+    newPassword: ""
+  })
+  
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setPwdFormData({ ...pwdFormData, [name]: value})
+  }
+
+  const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('api/addData', formData);
+      const newData = response.data;
+      //const updatedData = [...data, ...newData];
+      //setData(updatedData);
+    } 
+    catch (error) {
+      console.error('Error:', error);
+    }
+  }
 
 
   const states = [
@@ -120,7 +158,7 @@ export default function UpdateAccount() {
                   Update User Info
                 </h1>
 
-                <form className="row g-3">
+                <form className="row g-3" onSubmit={handleUserSubmit}>
                   <div className="col-md-6">
                     <label htmlFor="inputFullName" className="form-label">
                       Full Name
@@ -133,7 +171,7 @@ export default function UpdateAccount() {
                       maxLength={nameMaxLength}
                       name="fullName"
                       value={formData.fullName}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
 
@@ -149,7 +187,7 @@ export default function UpdateAccount() {
                       maxLength={nameMaxLength}
                       name="companyName"
                       value={formData.companyName}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
 
@@ -165,7 +203,7 @@ export default function UpdateAccount() {
                       maxLength={addressMaxLength}
                       name="address1"
                       value={formData.address1}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
 
@@ -181,7 +219,7 @@ export default function UpdateAccount() {
                       maxLength={addressMaxLength}
                       name="address2"
                       value={formData.address2}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
 
@@ -196,7 +234,7 @@ export default function UpdateAccount() {
                       maxLength={cityMaxLength}
                       name="city"
                       value={formData.city}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
 
@@ -235,7 +273,7 @@ export default function UpdateAccount() {
                       maxLength={zipcodeMaxLength}
                       name="zip"
                       value={formData.zip}
-                      onChange={handleInputChange}
+                      onChange={handleUserInputChange}
                     />
                   </div>
                   <div className="text-center">
@@ -257,7 +295,7 @@ export default function UpdateAccount() {
                 >
                   Update Password
                 </h1>
-                <form>
+                <form onSubmit={handlePasswordSubmit}>
                   <div className="mb-3">
                     <label
                       htmlFor="exampleInputPassword1"
@@ -282,6 +320,9 @@ export default function UpdateAccount() {
                       type="password"
                       className="form-control"
                       id="exampleInputPassword1"
+                      name="newPassword"
+                      value={pwdFormData.newPassword}
+                      onChange={handlePasswordInputChange}
                     />
                   </div>
                   <div className="mb-3">
