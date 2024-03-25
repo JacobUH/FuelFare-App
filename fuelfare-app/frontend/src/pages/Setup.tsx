@@ -1,7 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -17,6 +17,7 @@ interface FormData {
 }
 
 export default function Setup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     companyName: "",
@@ -55,6 +56,8 @@ export default function Setup() {
       console.log('Form data:', JSON.stringify(formData));
       const response = await axios.post('http://localhost:8080/signup', formData);
       console.log('User created:', response.data);
+      alert('Account creation successful! Thank you for using fuelfare.\nRedirecing to Login page...');
+      navigate('/login');
     } catch (error) {
       console.error('Error signing up:', error);
     }
