@@ -32,14 +32,14 @@ export default function Setup() {
   const location = useLocation();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const email = searchParams.get('email') || '';
-    const password = searchParams.get('password') || '';
+    // Retrieve data from sessionStorage
+    const storedEmail = sessionStorage.getItem('email') || '';
+    const storedPassword = sessionStorage.getItem('password') || '';
     
     // Update component state with email and password
     setFormData(prevState => ({
-      email,
-      password,
+      email: storedEmail,
+      password: storedPassword,
       ...prevState
     }));
   }, [location.search]);

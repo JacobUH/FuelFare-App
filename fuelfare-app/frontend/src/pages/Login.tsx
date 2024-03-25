@@ -24,7 +24,19 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/setup?email=${formData.email}&password=${formData.password}`);
+
+    const { email, password } = formData;
+  
+    // Store the email and password in sessionStorage
+    sessionStorage.setItem('email', email);
+    sessionStorage.setItem('password', password);
+  
+    // DEBUGGING
+    console.log("Stored Email:", email);
+    console.log("Stored Password:", password);
+    
+    // Redirecting to the signup page
+    navigate('/setup');
   };
 
   return (
