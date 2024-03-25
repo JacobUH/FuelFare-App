@@ -3,28 +3,29 @@ import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
 import { useLocation } from "react-router-dom"
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 interface FormData {
   fullName: string;
   companyName: string;
-  address1: string;
-  address2: string;
+  companyAddress1: string;
+  companyAddress2: string;
   city: string;
   state: string;
   country: string;
-  zip: string;
+  zipCode: string;
 }
 
 export default function Setup() {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     companyName: "",
-    address1: "",
-    address2: "",
+    companyAddress1: "",
+    companyAddress2: "",
     city: "",
     state: "",
     country: "",
-    zip: ""
+    zipCode: ""
   });
 
   const location = useLocation();
@@ -48,10 +49,16 @@ export default function Setup() {
     setFormData({ ...formData, [name]: value });
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      console.log('Form data:', JSON.stringify(formData));
+      const response = await axios.post('http://localhost:8080/signup', formData);
+      console.log('User created:', response.data);
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
+  };
 
   const states = [
     "AL",
@@ -129,7 +136,7 @@ export default function Setup() {
           <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="Setup">Setup Account</h1>
 
-            <form className="row g-3">
+            <form className="row g-3" onSubmit={handleSubmit}>
               <div className="col-md-6">
                 <label htmlFor="inputFullName" className="form-label">
                   Full Name
@@ -172,8 +179,8 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
-                  name="address1"
-                  value={formData.address1}
+                  name="companyAddress1"
+                  value={formData.companyAddress1}
                   onChange={handleInputChange}
                 />
               </div>
@@ -188,8 +195,8 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
-                  name="address2"
-                  value={formData.address2}
+                  name="companyAddress2"
+                  value={formData.companyAddress2}
                   onChange={handleInputChange}
                 />
               </div>
@@ -242,8 +249,8 @@ export default function Setup() {
                   id="inputZip"
                   minLength={zipcodeMinLength}
                   maxLength={zipcodeMaxLength}
-                  name="zip"
-                  value={formData.zip}
+                  name="zipCode"
+                  value={formData.zipCode}
                   onChange={handleInputChange}
                 />
               </div>
