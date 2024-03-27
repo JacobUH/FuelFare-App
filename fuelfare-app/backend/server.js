@@ -17,8 +17,14 @@ app.get("/", (req, res) => {
 });
 
 // Implement Routes Here
+
+// Sign Up
 const signUpRouter = require("./routes/signUpRoutes");
 app.use("/signup", signUpRouter);
+
+// New Quote
+const newQuoteRouter = require("./routes/newQuoteRoutes");
+app.use("/new", newQuoteRouter);
 
 // Start Server
 app.listen(PORT, () => {
