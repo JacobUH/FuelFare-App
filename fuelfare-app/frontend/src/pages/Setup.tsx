@@ -17,7 +17,6 @@ interface FormData {
 }
 
 export default function Setup() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     companyName: "",
@@ -30,6 +29,7 @@ export default function Setup() {
   });
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Retrieve data from sessionStorage
@@ -57,14 +57,14 @@ export default function Setup() {
     try {
       console.log("Form data:", JSON.stringify(formData));
       const response = await axios.post(
-        "http://localhost:8080/signup",
+        "http://localhost:8080/setup",
         formData
       );
       console.log("User created:", response.data);
       alert(
-        "Account creation successful! Thank you for using fuelfare.\nRedirecing to Login page..."
+        "Account creation successful! Thank you for using fuelfare.\nRedirecing to Dashboard page..."
       );
-      navigate("/login");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error signing up:", error);
     }

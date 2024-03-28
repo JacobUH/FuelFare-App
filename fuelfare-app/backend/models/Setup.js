@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSignUpSchema = new mongoose.Schema({
+const UserSetupSchema = new mongoose.Schema({
   email: { type: String, required: true, maxLength: 50 },
   password: { type: String, required: true, maxLength: 30 },
   fullName: { type: String, required: true, maxLength: 100 },
@@ -13,6 +13,6 @@ const UserSignUpSchema = new mongoose.Schema({
   zipCode: { type: String, required: true, maxLength: 10 },
 });
 
-const SignUp = mongoose.model("SignUp", UserSignUpSchema);
+const Setup = mongoose.model("Setup", UserSetupSchema);
 
-module.exports = SignUp;
+module.exports = Setup;

@@ -1,9 +1,9 @@
-const SignUp = require("../models/SignUp");
+const Setup = require("../models/Setup");
 
-const signup = async (req, res) => {
+const setup = async (req, res) => {
   try {
     // Create a new user
-    const newUser = new SignUp(req.body);
+    const newUser = new Setup(req.body);
     await newUser.save();
     res.status(201).json({ message: "User signed up successfully" });
   } catch (error) {
@@ -12,4 +12,4 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signup };
+module.exports = { setup };

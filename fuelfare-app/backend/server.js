@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 // Implement Routes Here
 
 // Sign Up
-const signUpRouter = require("./routes/signUpRoutes");
-app.use("/signup", signUpRouter);
+const setupRouter = require("./routes/setupRoutes");
+app.use("/setup", setupRouter);
 
 // New Quote
 const newQuoteRouter = require("./routes/newQuoteRoutes");
