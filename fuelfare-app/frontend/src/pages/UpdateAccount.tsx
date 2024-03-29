@@ -64,7 +64,7 @@ export default function UpdateAccount() {
         }
       });
 
-      alert("Account credentials updated successfully. Redirecting to dashboard...");
+      alert("Account information updated successfully. Redirecting to dashboard...");
       navigate("/dashboard");
       } catch(error) {
         console.error("Error updating user info:", error);
