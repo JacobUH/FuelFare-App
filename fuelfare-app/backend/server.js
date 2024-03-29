@@ -30,6 +30,10 @@ app.use("/login", loginRouter);
 const newQuoteRouter = require("./routes/newQuoteRoutes");
 app.use("/new", newQuoteRouter);
 
+// View Quote
+
+// Update Account
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Connected to server on port ${PORT}.`);
