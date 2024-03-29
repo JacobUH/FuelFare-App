@@ -30,6 +30,7 @@ export default function Setup() {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     // Retrieve data from sessionStorage
@@ -66,7 +67,13 @@ export default function Setup() {
       );
       navigate("/login");
     } catch (error) {
-      console.error("Error signing up:", error);
+      // Check if the error is due to email already existing
+      const err = error as any;
+      if (err.response && err.response.data && err.response.data.error === "Email already exists in the database") {
+        setError("Email already exists in the fuelfare system.");
+      } else {
+        console.error("Error signing up:", error);
+      }
     }
   };
 
@@ -282,6 +289,7 @@ export default function Setup() {
                   Setup Account
                 </button>
               </div>
+              {error && <div className="alert alert-danger">{error}</div>}
             </form>
           </div>
         </div>

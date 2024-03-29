@@ -5,6 +5,13 @@ const setup = async (req, res) => {
   try {
     const { email, password, ...otherFormData } = req.body;
 
+    const existingUser = await Setup.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ error: "Email already exists in the database" });
+    }
+
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
