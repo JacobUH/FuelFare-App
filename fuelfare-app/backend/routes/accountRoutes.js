@@ -1,4 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const accountController = require('../controllers/accountController');
+const {
+  updateAccount,
+  updatePassword,
+} = require("../controllers/accountController");
+
+router.put("/", updateAccount);
+router.put("/", updatePassword);
+
+module.exports = router;
