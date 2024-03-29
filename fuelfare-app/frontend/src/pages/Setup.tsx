@@ -62,9 +62,9 @@ export default function Setup() {
       );
       console.log("User created:", response.data);
       alert(
-        "Account creation successful! Thank you for using fuelfare.\nRedirecing to Dashboard page..."
+        "Account creation successful! Thank you for using fuelfare.\nDirecting to Login page for account login."
       );
-      navigate("/dashboard");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing up:", error);
     }

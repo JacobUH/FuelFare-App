@@ -1,10 +1,16 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import { useState } from "react";
+import axios from "axios";
 
 interface FormData {
+  email: string;
+  password: string;
+}
+
+interface LoginFormData {
   email: string;
   password: string;
 }
@@ -15,11 +21,21 @@ export default function Login() {
     password: "",
   });
 
+  const [loginFormData, setLoginFormData] = useState<LoginFormData>({
+    email: "",
+    password: ""
+  })
+
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginFormData({ ...loginFormData, [name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,6 +53,31 @@ export default function Login() {
 
     // Redirecting to the signup page
     navigate("/setup");
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // DEBUGGING
+    console.log(loginFormData)
+
+    try {
+      const response = await axios.post("http://localhost:8080/login", loginFormData);
+      console.log('Login response:', response.data);
+
+      // Handle successful login, e.g., store token in localStorage and redirect
+      // Also store userId for new quotes
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
+
+      console.log(localStorage);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login error, e.g., display error message
+      alert('Login failed. Please check your credentials.');
+    }
   };
 
   return (
@@ -113,7 +154,7 @@ export default function Login() {
                 >
                   Login
                 </h1>
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
                       Email address
@@ -123,6 +164,9 @@ export default function Login() {
                       className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
+                      name="email"
+                      value={loginFormData.email}
+                      onChange={handleLoginInputChange}
                     />
                     <div id="emailHelp" className="form-text pb-3">
                       We'll never share your email with anyone else.
@@ -139,12 +183,13 @@ export default function Login() {
                       type="password"
                       className="form-control"
                       id="exampleInputPassword1"
+                      name="password"
+                      value={loginFormData.password}
+                      onChange={handleLoginInputChange}
                     />
                   </div>
                   <div className="text-center">
-                    <Link to="/dashboard" className="btn btn-login-pg">
-                      Login
-                    </Link>
+                  <button type="submit" className="btn btn-login-pg">Login</button>
                   </div>
                 </form>
               </div>
