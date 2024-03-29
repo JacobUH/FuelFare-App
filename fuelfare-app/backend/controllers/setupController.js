@@ -5,6 +5,7 @@ const setup = async (req, res) => {
   try {
     const { email, password, ...otherFormData } = req.body;
 
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new Setup({
