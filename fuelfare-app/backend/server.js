@@ -2,7 +2,7 @@ const express = require("express");
 const connectToDB = require("./database");
 const dotenv = require("dotenv").config();
 PORT = 8080;
-
+const authenticateToken = require("./middleware/authMiddleware");
 connectToDB(process.env.MONGO_URL);
 
 // initialize express app
@@ -31,6 +31,8 @@ const newQuoteRouter = require("./routes/newQuoteRoutes");
 app.use("/new", newQuoteRouter);
 
 // View Quote
+const quotesRoute = require("./routes/quoteRoutes");
+app.use("/quotes", authenticateToken, quotesRoute);
 
 // Update Account
 

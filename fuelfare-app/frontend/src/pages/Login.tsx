@@ -1,6 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import { useState } from "react";
 import axios from "axios";
@@ -69,7 +69,9 @@ export default function Login() {
       // Also store userId for new quotes
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userId', response.data.userId);
-      
+
+      console.log(localStorage);
+
       navigate("/dashboard");
     } catch (error) {
       console.error('Login failed:', error);
