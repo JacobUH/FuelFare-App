@@ -64,7 +64,7 @@ export default function UpdateAccount() {
         }
       });
 
-      alert("Account credentials successfully updated!\nRedirecting to dashboard...")
+      alert("Account credentials updated successfully. Redirecting to dashboard...");
       navigate("/dashboard");
       } catch(error) {
         console.error("Error updating user info:", error);
@@ -74,19 +74,25 @@ export default function UpdateAccount() {
   const handlePWSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try{
+    // Check if newPassword and confNewPassword match
+    if (updatePWFormData.newPassword !== updatePWFormData.confNewPassword) {
+      alert("New Password and Confirm New Password fields do not match.");
+      return;
+    }
+
+    try {
       const token = localStorage.getItem('token');
-      await axios.put("http://localhost:8080/updatePassword", updatePWFormData, {
+      await axios.patch("http://localhost:8080/updatePassword", updatePWFormData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
-      alert("Account password successfully updated!\nRedirecting to dashboard...")
-      navigate("/dashboard");
+      alert("Your password has been successfully updated! You will now be redirected to the login page to sign in with your new password.");
+      navigate("/login");
       } catch(error) {
         console.error("Error updating user info:", error);
-      }
+    }
   }
 
   const states = [

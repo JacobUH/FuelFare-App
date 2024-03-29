@@ -7,6 +7,6 @@ const {
 } = require("../controllers/accountController");
 
 router.put("/", updateAccount);
-router.put("/", updatePassword);
+router.patch("/", updatePassword);
 
 module.exports = router;
