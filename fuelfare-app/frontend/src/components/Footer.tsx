@@ -7,6 +7,7 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ color }) => {
   const footerStyle: React.CSSProperties = {
     color: color || "#FFFFFF",
+    zIndex: 30,
   };
 
   const linkStyle: React.CSSProperties = {
