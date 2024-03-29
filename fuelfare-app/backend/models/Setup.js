@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSetupSchema = new mongoose.Schema({
   email: { type: String, required: true, maxLength: 50 },
-  password: { type: String, required: true, maxLength: 30 },
+  password: { type: String, required: true, maxLength: 200 },
   fullName: { type: String, required: true, maxLength: 100 },
   companyName: { type: String, required: true, maxLength: 50 },
   companyAddress1: { type: String, required: true, maxLength: 100 },
