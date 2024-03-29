@@ -64,8 +64,12 @@ export default function Login() {
     try {
       const response = await axios.post("http://localhost:8080/login", loginFormData);
       console.log('Login response:', response.data);
+
       // Handle successful login, e.g., store token in localStorage and redirect
+      // Also store userId for new quotes
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
+      
       navigate("/dashboard");
     } catch (error) {
       console.error('Login failed:', error);

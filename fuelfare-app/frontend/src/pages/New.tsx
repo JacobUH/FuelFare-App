@@ -71,8 +71,13 @@ export default function New() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log("Form data for new quote:", JSON.stringify(formData));
-      const response = await axios.post("http://localhost:8080/new", formData);
+      // Include userId in formData
+      const userId = localStorage.getItem('userId');
+
+      const quoteData = { user: userId, ...formData}
+      console.log("Form data for new quote:", JSON.stringify(quoteData));
+
+      const response = await axios.post("http://localhost:8080/new", quoteData);
       console.log("Quote created:", response.data);
       alert("Redirecting to Estimated Quote...");
       navigate("/view");

@@ -39,7 +39,7 @@ const login = async (req, res) => {
 
     console.log("JWT token generated:", token);
 
-    res.json({ token });
+    res.json({ userId: user._id, token });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ error: "Internal server error" });
