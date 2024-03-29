@@ -3,17 +3,28 @@ import { Footer } from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import { useState } from "react";
+import axios from "axios";
 
 interface FormData {
   email: string;
   password: string;
 }
 
+interface LoginFormData {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
-  const [formData, setFormData] = useState<FormData> ({
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+
+  const [loginFormData, setLoginFormData] = useState<LoginFormData>({
     email: "",
     password: ""
-  });
+  })
 
   const navigate = useNavigate();
 
@@ -22,9 +33,49 @@ export default function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginFormData({ ...loginFormData, [name]: value });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/setup?email=${formData.email}&password=${formData.password}`);
+
+    const { email, password } = formData;
+
+    // Store the email and password in sessionStorage
+    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("password", password);
+
+    // DEBUGGING
+    console.log("Stored Email:", email);
+    console.log("Stored Password:", password);
+
+    // Redirecting to the signup page
+    navigate("/setup");
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // DEBUGGING
+    console.log(loginFormData)
+
+    try {
+      const response = await axios.post("http://localhost:8080/login", loginFormData);
+      console.log('Login response:', response.data);
+
+      // Handle successful login, e.g., store token in localStorage and redirect
+      // Also store userId for new quotes
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
+      
+      navigate("/dashboard");
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login error, e.g., display error message
+      alert('Login failed. Please check your credentials.');
+    }
   };
 
   return (
@@ -59,6 +110,7 @@ export default function Login() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      required
                     />
                     <div id="emailHelp" className="form-text pb-3">
                       We'll never share your email with anyone else.
@@ -78,6 +130,7 @@ export default function Login() {
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div className="text-center">
@@ -99,7 +152,7 @@ export default function Login() {
                 >
                   Login
                 </h1>
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">
                       Email address
@@ -109,6 +162,9 @@ export default function Login() {
                       className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
+                      name="email"
+                      value={loginFormData.email}
+                      onChange={handleLoginInputChange}
                     />
                     <div id="emailHelp" className="form-text pb-3">
                       We'll never share your email with anyone else.
@@ -125,12 +181,13 @@ export default function Login() {
                       type="password"
                       className="form-control"
                       id="exampleInputPassword1"
+                      name="password"
+                      value={loginFormData.password}
+                      onChange={handleLoginInputChange}
                     />
                   </div>
                   <div className="text-center">
-                    <Link to="/dashboard" className="btn btn-login-pg">
-                      Login
-                    </Link>
+                  <button type="submit" className="btn btn-login-pg">Login</button>
                   </div>
                 </form>
               </div>
