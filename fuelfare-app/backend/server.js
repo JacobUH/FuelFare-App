@@ -35,6 +35,11 @@ const quotesRoute = require("./routes/quoteRoutes");
 app.use("/quotes", authenticateToken, quotesRoute);
 
 // Update Account
+const updateAccRoute = require("./routes/accountRoutes");
+app.use("/updateAccount", authenticateToken, updateAccRoute);
+
+const updatePWRoute = require("./routes/accountRoutes");
+app.use("/updatePassword", authenticateToken, updatePWRoute);
 
 // Start Server
 app.listen(PORT, () => {
