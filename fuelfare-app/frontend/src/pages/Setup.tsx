@@ -1,57 +1,74 @@
 import { Navbar } from "../components/Navbar";
 import BackButton from "../components/BackButton";
 import { Footer } from "../components/Footer";
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface FormData {
   fullName: string;
   companyName: string;
-  address1: string;
-  address2: string;
+  companyAddress1: string;
+  companyAddress2: string;
   city: string;
   state: string;
   country: string;
-  zip: string;
+  zipCode: string;
 }
 
 export default function Setup() {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     companyName: "",
-    address1: "",
-    address2: "",
+    companyAddress1: "",
+    companyAddress2: "",
     city: "",
     state: "",
     country: "",
-    zip: ""
+    zipCode: "",
   });
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const email = searchParams.get('email') || '';
-    const password = searchParams.get('password') || '';
-    
+    // Retrieve data from sessionStorage
+    const storedEmail = sessionStorage.getItem("email") || "";
+    const storedPassword = sessionStorage.getItem("password") || "";
+
     // Update component state with email and password
-    setFormData(prevState => ({
-      email,
-      password,
-      ...prevState
+    setFormData((prevState) => ({
+      email: storedEmail,
+      password: storedPassword,
+      ...prevState,
     }));
   }, [location.search]);
 
   // Update state 'formData' based on user input
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      console.log("Form data:", JSON.stringify(formData));
+      const response = await axios.post(
+        "http://localhost:8080/setup",
+        formData
+      );
+      console.log("User created:", response.data);
+      alert(
+        "Account creation successful! Thank you for using fuelfare.\nRedirecing to Dashboard page..."
+      );
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
+  };
 
   const states = [
     "AL",
@@ -129,7 +146,7 @@ export default function Setup() {
           <div className="card-body" style={{ borderRadius: 30 }}>
             <h1 className="Setup">Setup Account</h1>
 
-            <form className="row g-3">
+            <form className="row g-3" onSubmit={handleSubmit}>
               <div className="col-md-6">
                 <label htmlFor="inputFullName" className="form-label">
                   Full Name
@@ -172,8 +189,8 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
-                  name="address1"
-                  value={formData.address1}
+                  name="companyAddress1"
+                  value={formData.companyAddress1}
                   onChange={handleInputChange}
                 />
               </div>
@@ -188,8 +205,8 @@ export default function Setup() {
                   id="inputAddress"
                   placeholder="1234 Main St"
                   maxLength={addressMaxLength}
-                  name="address2"
-                  value={formData.address2}
+                  name="companyAddress2"
+                  value={formData.companyAddress2}
                   onChange={handleInputChange}
                 />
               </div>
@@ -213,7 +230,13 @@ export default function Setup() {
                 <label htmlFor="inputState" className="form-label">
                   State
                 </label>
-                <select id="inputState" className="form-select" name="state" value={formData.state} onChange={handleInputChange}>
+                <select
+                  id="inputState"
+                  className="form-select"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                >
                   <option selected>Choose...</option>
                   {states.map((state, index) => (
                     <option key={index}>{state}</option>
@@ -225,7 +248,13 @@ export default function Setup() {
                 <label htmlFor="inputState" className="form-label">
                   Country
                 </label>
-                <select id="inputState" className="form-select" name="country" value={formData.country} onChange={handleInputChange}>
+                <select
+                  id="inputState"
+                  className="form-select"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                >
                   <option selected>Choose...</option>
                   <option>United States</option>
                   <option>Others Here...</option>
@@ -242,17 +271,14 @@ export default function Setup() {
                   id="inputZip"
                   minLength={zipcodeMinLength}
                   maxLength={zipcodeMaxLength}
-                  name="zip"
-                  value={formData.zip}
+                  name="zipCode"
+                  value={formData.zipCode}
                   onChange={handleInputChange}
                 />
               </div>
 
               <div className="col-12">
-                <button
-                  type="submit"
-                  className="btn btn-login-pg"
-                >
+                <button type="submit" className="btn btn-login-pg">
                   Setup Account
                 </button>
               </div>

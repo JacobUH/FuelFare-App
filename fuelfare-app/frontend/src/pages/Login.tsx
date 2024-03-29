@@ -10,9 +10,9 @@ interface FormData {
 }
 
 export default function Login() {
-  const [formData, setFormData] = useState<FormData> ({
+  const [formData, setFormData] = useState<FormData>({
     email: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -24,7 +24,19 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/setup?email=${formData.email}&password=${formData.password}`);
+
+    const { email, password } = formData;
+
+    // Store the email and password in sessionStorage
+    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("password", password);
+
+    // DEBUGGING
+    console.log("Stored Email:", email);
+    console.log("Stored Password:", password);
+
+    // Redirecting to the signup page
+    navigate("/setup");
   };
 
   return (
@@ -59,6 +71,7 @@ export default function Login() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      required
                     />
                     <div id="emailHelp" className="form-text pb-3">
                       We'll never share your email with anyone else.
@@ -78,6 +91,7 @@ export default function Login() {
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div className="text-center">
