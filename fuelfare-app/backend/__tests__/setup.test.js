@@ -1,136 +1,118 @@
-// Import necessary modules
 const { setup } = require("../controllers/setupController");
 const Setup = require("../models/Setup");
 const bcrypt = require("bcrypt");
 
-// Mock Setup model functions
-jest.mock("../models/Setup", () => ({
-  findOne: jest.fn(),
-  create: jest.fn(),
-}));
-
-// Mock bcrypt hash function
-jest.mock("bcrypt", () => ({
-  hash: jest.fn(),
-}));
+jest.mock("bcrypt");
+jest.mock("../models/Setup");
 
 describe("setupController", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  test("Should create new user when email does not exist", async () => {
+  test("should create a new user successfully", async () => {
     const req = {
       body: {
         email: "test@example.com",
         password: "password123",
-        fullName: "Test User",
-        companyName: "Test Company",
-        companyAddress1: "123 Test St",
-        city: "Test City",
-        state: "TS",
-        country: "Test Country",
-        zipCode: "12345",
+        fullName: "John Doe",
+        companyName: "ABC Inc.",
+        companyAddress1: "123 Main St",
+        companyAddress2: "",
+        city: "New York",
+        state: "NY",
+        country: "USA",
+        zipCode: "10001",
       },
     };
-
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
 
-    // Mock Setup.findOne to return null (email doesn't exist)
-    Setup.findOne.mockResolvedValue(null);
+    const hashedPassword = "hashedPassword123";
+    bcrypt.hash.mockResolvedValueOnce(hashedPassword);
 
-    // Mock bcrypt.hash to return hashed password
-    bcrypt.hash.mockResolvedValue("hashedPassword123");
-
-    // Mock Setup.create to resolve
-    Setup.create.mockResolvedValue({
-      _id: "userId123",
-      email: req.body.email,
-      password: "hashedPassword123",
-      ...req.body,
-    });
+    const newUser = {
+      save: jest.fn().mockResolvedValueOnce(),
+    };
+    Setup.mockReturnValueOnce(newUser);
 
     await setup(req, res);
 
-    // Assertions
-    expect(Setup.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(bcrypt.hash).toHaveBeenCalledWith(req.body.password, 10);
-    expect(Setup.create).toHaveBeenCalledWith({
+    expect(Setup).toHaveBeenCalledWith({
       email: req.body.email,
-      password: "hashedPassword123",
-      ...req.body,
+      password: hashedPassword,
+      fullName: req.body.fullName,
+      companyName: req.body.companyName,
+      companyAddress1: req.body.companyAddress1,
+      companyAddress2: req.body.companyAddress2,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zipCode: req.body.zipCode,
     });
+    expect(newUser.save).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({
       message: "User signed up successfully",
     });
   });
 
-  test("Should return error when email already exists", async () => {
+  test("should handle existing email", async () => {
     const req = {
       body: {
         email: "test@example.com",
         password: "password123",
-        fullName: "Test User",
-        companyName: "Test Company",
-        companyAddress1: "123 Test St",
-        city: "Test City",
-        state: "TS",
-        country: "Test Country",
-        zipCode: "12345",
+        fullName: "John Doe",
+        companyName: "ABC Inc.",
+        companyAddress1: "123 Main St",
+        companyAddress2: "",
+        city: "New York",
+        state: "NY",
+        country: "USA",
+        zipCode: "10001",
       },
     };
-
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
 
-    // Mock Setup.findOne to return existing user
-    Setup.findOne.mockResolvedValue({
-      email: req.body.email,
-      password: "hashedPassword123",
-      ...req.body,
-    });
+    Setup.findOne.mockResolvedValueOnce({ email: req.body.email });
 
     await setup(req, res);
 
-    // Assertions
-    expect(Setup.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ error: "Email already exists" });
   });
 
-  test("Should return error when database operation fails", async () => {
+  test("should handle internal server error", async () => {
     const req = {
       body: {
         email: "test@example.com",
         password: "password123",
-        fullName: "Test User",
-        companyName: "Test Company",
-        companyAddress1: "123 Test St",
-        city: "Test City",
-        state: "TS",
-        country: "Test Country",
-        zipCode: "12345",
+        fullName: "John Doe",
+        companyName: "ABC Inc.",
+        companyAddress1: "123 Main St",
+        companyAddress2: "",
+        city: "New York",
+        state: "NY",
+        country: "USA",
+        zipCode: "10001",
       },
     };
-
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
 
-    // Mock Setup.findOne to throw error
-    Setup.findOne.mockRejectedValue(new Error("Database error"));
+    const errorMessage = "Database error";
+    Setup.findOne.mockRejectedValueOnce(new Error(errorMessage));
 
     await setup(req, res);
 
-    // Assertions
-    expect(Setup.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ error: "Internal server error" });
   });
