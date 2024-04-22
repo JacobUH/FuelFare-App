@@ -39,6 +39,9 @@ const quotesRoute = require("./routes/quoteRoutes");
 app.use("/quotes", authenticateToken, quotesRoute);
 
 // Update Account
+const fetchUserDataRoute = require("./routes/accountRoutes");
+app.use("/fetchUserData", authenticateToken, fetchUserDataRoute);
+
 const updateAccRoute = require("./routes/accountRoutes");
 app.use("/updateAccount", authenticateToken, updateAccRoute);
 

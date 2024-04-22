@@ -1,7 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
 import axios from "axios";
 
@@ -17,37 +17,76 @@ interface UpdateUserInfoFormData {
 }
 
 interface UpdatePWFormData {
-  currentPassword: string,
-  newPassword: string,
-  confNewPassword: string
+  currentPassword: string;
+  newPassword: string;
+  confNewPassword: string;
 }
 
 export default function UpdateAccount() {
-  const  [updateUserInfoFormData, setUpdateUserInfoFormData] = useState<UpdateUserInfoFormData>({
-    fullName: "",
-    companyName: "",
-    companyAddress1: "",
-    companyAddress2: "",
-    city: "",
-    state: "",
-    country: "",
-    zipCode: ""
-  })
+  const [updateUserInfoFormData, setUpdateUserInfoFormData] =
+    useState<UpdateUserInfoFormData>({
+      fullName: "",
+      companyName: "",
+      companyAddress1: "",
+      companyAddress2: "",
+      city: "",
+      state: "",
+      country: "",
+      zipCode: "",
+    });
 
   const [updatePWFormData, setUpdatePWFormData] = useState<UpdatePWFormData>({
     currentPassword: "",
     newPassword: "",
-    confNewPassword: ""
-  })
+    confNewPassword: "",
+  });
 
   const navigate = useNavigate();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:8080/fetchUserData",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Response data:", response.data);
+        const userData = response.data.userSetup;
+        console.log("User data:", userData);
+        setUpdateUserInfoFormData({
+          fullName: userData.fullName,
+          companyName: userData.companyName,
+          companyAddress1: userData.companyAddress1,
+          companyAddress2: userData.companyAddress2,
+          city: userData.city,
+          state: userData.state,
+          country: userData.country,
+          zipCode: userData.zipCode,
+        });
+        console.log("Updated user info:", updateUserInfoFormData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setUpdateUserInfoFormData({ ...updateUserInfoFormData, [name]: value });
   };
 
-  const handlePWInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handlePWInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setUpdatePWFormData({ ...updatePWFormData, [name]: value });
   };
@@ -56,20 +95,26 @@ export default function UpdateAccount() {
   const handleAccountSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try{
-      const token = localStorage.getItem('token');
-      await axios.put("http://localhost:8080/updateAccount", updateUserInfoFormData, {
-        headers: {
-          Authorization: `Bearer ${token}`
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        "http://localhost:8080/updateAccount",
+        updateUserInfoFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
-      alert("Account information updated successfully. Redirecting to dashboard...");
+      alert(
+        "Account information updated successfully. Redirecting to dashboard..."
+      );
       navigate("/dashboard");
-      } catch(error) {
-        console.error("Error updating user info:", error);
-      }
-  }
+    } catch (error) {
+      console.error("Error updating user info:", error);
+    }
+  };
 
   const handlePWSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -81,19 +126,25 @@ export default function UpdateAccount() {
     }
 
     try {
-      const token = localStorage.getItem('token');
-      await axios.patch("http://localhost:8080/updatePassword", updatePWFormData, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      const token = localStorage.getItem("token");
+      await axios.patch(
+        "http://localhost:8080/updatePassword",
+        updatePWFormData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
-      alert("Your password has been successfully updated! You will now be redirected to the login page to sign in with your new password.");
+      alert(
+        "Your password has been successfully updated! You will now be redirected to the login page to sign in with your new password."
+      );
       navigate("/login");
-      } catch(error) {
-        console.error("Error updating user info:", error);
+    } catch (error) {
+      console.error("Error updating user info:", error);
     }
-  }
+  };
 
   const states = [
     "AL",
@@ -188,7 +239,7 @@ export default function UpdateAccount() {
                       placeholder="John Smith"
                       maxLength={nameMaxLength}
                       name="fullName"
-                      value= {updateUserInfoFormData.fullName}
+                      value={updateUserInfoFormData.fullName}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -204,7 +255,7 @@ export default function UpdateAccount() {
                       placeholder="John's Apple Farm"
                       maxLength={nameMaxLength}
                       name="companyName"
-                      value= {updateUserInfoFormData.companyName}
+                      value={updateUserInfoFormData.companyName}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -220,7 +271,7 @@ export default function UpdateAccount() {
                       placeholder="1234 Main St"
                       maxLength={addressMaxLength}
                       name="companyAddress1"
-                      value= {updateUserInfoFormData.companyAddress1}
+                      value={updateUserInfoFormData.companyAddress1}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -236,7 +287,7 @@ export default function UpdateAccount() {
                       placeholder="1234 Main St"
                       maxLength={addressMaxLength}
                       name="companyAddress2"
-                      value= {updateUserInfoFormData.companyAddress2}
+                      value={updateUserInfoFormData.companyAddress2}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -251,7 +302,7 @@ export default function UpdateAccount() {
                       id="inputCity"
                       maxLength={cityMaxLength}
                       name="city"
-                      value= {updateUserInfoFormData.city}
+                      value={updateUserInfoFormData.city}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -260,7 +311,12 @@ export default function UpdateAccount() {
                     <label htmlFor="inputState" className="form-label">
                       State
                     </label>
-                    <select id="inputState" className="form-select" onChange={handleInputChange} name="state">
+                    <select
+                      id="inputState"
+                      className="form-select"
+                      onChange={handleInputChange}
+                      name="state"
+                    >
                       <option selected>Choose...</option>
                       {states.map((state, index) => (
                         <option key={index}>{state}</option>
@@ -272,7 +328,12 @@ export default function UpdateAccount() {
                     <label htmlFor="inputState" className="form-label">
                       Country
                     </label>
-                    <select id="inputState" className="form-select" onChange={handleInputChange} name="country">
+                    <select
+                      id="inputState"
+                      className="form-select"
+                      onChange={handleInputChange}
+                      name="country"
+                    >
                       <option selected>Choose...</option>
                       <option>United States</option>
                       <option>Others Here...</option>
@@ -290,12 +351,14 @@ export default function UpdateAccount() {
                       minLength={zipcodeMinLength}
                       maxLength={zipcodeMaxLength}
                       name="zipCode"
-                      value= {updateUserInfoFormData.zipCode}
+                      value={updateUserInfoFormData.zipCode}
                       onChange={handleInputChange}
                     />
                   </div>
                   <div className="text-center">
-                  <button type="submit" className="btn btn-login-pg">Confirm Changes</button>
+                    <button type="submit" className="btn btn-login-pg">
+                      Confirm Changes
+                    </button>
                   </div>
                 </form>
               </div>
@@ -324,7 +387,7 @@ export default function UpdateAccount() {
                       className="form-control"
                       id="exampleInputPassword1"
                       name="currentPassword"
-                      value= {updatePWFormData.currentPassword}
+                      value={updatePWFormData.currentPassword}
                       onChange={handlePWInputChange}
                     />
                   </div>
@@ -340,7 +403,7 @@ export default function UpdateAccount() {
                       className="form-control"
                       id="exampleInputPassword1"
                       name="newPassword"
-                      value= {updatePWFormData.newPassword}
+                      value={updatePWFormData.newPassword}
                       onChange={handlePWInputChange}
                     />
                   </div>
@@ -356,12 +419,14 @@ export default function UpdateAccount() {
                       className="form-control"
                       id="exampleInputPassword1"
                       name="confNewPassword"
-                      value= {updatePWFormData.confNewPassword}
+                      value={updatePWFormData.confNewPassword}
                       onChange={handlePWInputChange}
                     />
                   </div>
                   <div className="text-center">
-                  <button type="submit" className="btn btn-login-pg">Confirm Changes</button>
+                    <button type="submit" className="btn btn-login-pg">
+                      Confirm Changes
+                    </button>
                   </div>
                 </form>
               </div>
