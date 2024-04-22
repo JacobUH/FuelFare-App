@@ -38,23 +38,30 @@ export default function Login() {
     setLoginFormData({ ...loginFormData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // User creating a new account
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const { email, password } = formData;
-
-    // Store the email and password in sessionStorage
-    sessionStorage.setItem("email", email);
-    sessionStorage.setItem("password", password);
-
-    // DEBUGGING
-    console.log("Stored Email:", email);
-    console.log("Stored Password:", password);
-
-    // Redirecting to the signup page
-    navigate("/setup");
+  
+    try {
+      // Send a request to create user credentials
+      await axios.post("http://localhost:8080/signup", { email, password });
+  
+      // Store email and password in session storage
+      sessionStorage.setItem("email", email);
+      // sessionStorage.setItem("password", password);
+      // console.log("Stored Email:", email);
+      // console.log("Stored Password:", password);
+  
+      navigate("/setup");
+    } catch (error) {
+      console.error('Signup failed:', error);
+      alert('Signup failed. Please try again.');
+    }
   };
 
+  // User logging into existing account
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     

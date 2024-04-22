@@ -1,29 +1,27 @@
 const Setup = require("../models/Setup");
-const bcrypt = require("bcrypt");
+const UserCredentials = require("../models/UserCredentials");
 
 const setup = async (req, res) => {
   try {
-    const { email, password, ...otherFormData } = req.body;
+    const { email, ...otherFormData } = req.body;
 
-    // Check if user with the same email already exists
-    const existingUser = await Setup.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists" });
+    // Find user credentials by email
+    const userCredentials = await UserCredentials.findOne({ email });
+    if (!userCredentials) {
+      return res.status(400).json({ error: "User credentials not found" });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new Setup({
-      email,
-      password: hashedPassword,
+    // Create user information document with associated credentials
+    const newUserSetup = new Setup({
+      credentials: userCredentials._id,
       ...otherFormData,
     });
-    await newUser.save();
 
-    res.status(201).json({ message: "User signed up successfully" });
+    await newUserSetup.save();
+
+    res.status(201).json({ message: "User information saved successfully" });
   } catch (error) {
-    console.error("Error signing up:", error);
+    console.error("Error setting up user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

@@ -18,6 +18,10 @@ app.get("/", (req, res) => {
 
 // Implement Routes Here
 
+// SignUp
+const signUpRouter = require("./routes/signUpRoutes");
+app.use("/signup", signUpRouter);
+
 // Setup
 const setupRouter = require("./routes/setupRoutes");
 app.use("/setup", setupRouter);
