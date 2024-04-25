@@ -34,6 +34,9 @@ app.use("/login", loginRouter);
 const newQuoteRouter = require("./routes/newQuoteRoutes");
 app.use("/new", newQuoteRouter);
 
+const getQuotePriceRouter = require("./routes/newQuoteRoutes")
+app.use("/getQuotePrice", authenticateToken, getQuotePriceRouter);
+
 // View Quote
 const quotesRoute = require("./routes/quoteRoutes");
 app.use("/quotes", authenticateToken, quotesRoute);
