@@ -44,6 +44,7 @@ export default function New() {
   };
 
   const [marketPrice, setMarketPrice] = useState("");
+  const [quoteRequested, setQuoteRequested] = useState(false);
 
   const handleFuelTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedFuelType = e.target.value;
@@ -72,15 +73,16 @@ export default function New() {
     e.preventDefault();
     try {
       // Include userId in formData
-      const userId = localStorage.getItem('userId');
+      const userId = localStorage.getItem("userId");
 
-      const quoteData = { user: userId, ...formData}
+      const quoteData = { user: userId, ...formData };
       console.log("Form data for new quote:", JSON.stringify(quoteData));
 
-      const response = await axios.post("http://localhost:8080/new", quoteData);
-      console.log("Quote created:", response.data);
-      alert("Redirecting to Estimated Quote...");
-      navigate("/view");
+      //const response = await axios.post("http://localhost:8080/new", quoteData);
+      //console.log("Quote created:", response.data);
+      //alert("Redirecting to Estimated Quote...");
+      //navigate("/view");
+      setQuoteRequested(true);
     } catch (error) {
       console.error("Error creating quote:", error);
     }
@@ -94,14 +96,16 @@ export default function New() {
     >
       <Navbar />
       <BackButton className="ms-3" />
-      <div className="container mt-5">
+      <div
+        className="container mt-5"
+        style={{ overflowY: "auto", maxHeight: "calc(100vh - 280px)" }}
+      >
         <div
           className="card mx-auto no-margin-top"
           style={{ maxWidth: "1000px", borderRadius: 30 }}
         >
           <div className="card-body px-5" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Create a New Quote</h1>
-
             <form className="row g-3 row-cols-3" onSubmit={handleSubmit}>
               <div className="col-sm-2">
                 <label htmlFor="inputNum" className="form-label">
@@ -118,7 +122,6 @@ export default function New() {
                   required
                 />
               </div>
-
               <div className="col-sm-2">
                 <label htmlFor="inputFuel" className="form-label">
                   Fuel Type
@@ -139,7 +142,6 @@ export default function New() {
                   <option value="diesel">Diesel</option>
                 </select>
               </div>
-
               <div className="col-3">
                 <label htmlFor="PricePerGallon" className="form-label">
                   Market Price per Gallon
@@ -154,7 +156,6 @@ export default function New() {
                   readOnly
                 />
               </div>
-
               <div className="col-lg-9">
                 <label htmlFor="companyAddress" className="form-label">
                   Company Address
@@ -167,72 +168,45 @@ export default function New() {
                   value={formData.address}
                   placeholder="Insert Address Here"
                   onChange={handleInputChange}
+                  required
                 />
               </div>
-
-              <div className="col-md-4">
-                <label htmlFor="inputDate" className="form-label">
-                  Delivery Date
-                </label>
-                <div className="input-group">
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="month"
-                    value={formData.deliveryDate.split("/")[0]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Month</option>
-                    <option value="1">Jan</option>
-                    <option value="2">Feb</option>
-                    <option value="3">Mar</option>
-                    <option value="4">Apr</option>
-                    <option value="5">May</option>
-                    <option value="6">Jun</option>
-                    <option value="7">Jul</option>
-                    <option value="8">Aug</option>
-                    <option value="9">Sep</option>
-                    <option value="10">Oct</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Dec</option>
-                  </select>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="day"
-                    value={formData.deliveryDate.split("/")[1]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Day</option>
-                    {Array.from({ length: 31 }, (_, index) => (
-                      <option key={index + 1} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="year"
-                    value={formData.deliveryDate.split("/")[2]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Year</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                  </select>
-                </div>
-              </div>
-
               <div className="col-12 pb-2">
                 <button type="submit" className="btn btn-login-pg">
-                  Create Quote
+                  Request Quote
                 </button>
               </div>
             </form>
           </div>
         </div>
+        {quoteRequested && (
+          <div className="card text-center">
+            <div className="card-body-quote">
+              <h1 className="card-title p-2 mt-5">Estimated Fuel Quote</h1>
+              <h5 className="card-text">
+                Here is what we calculated based on your information inputted
+                above.
+              </h5>
+              <div
+                className="bg-success text-white d-flex align-items-center justify-content-center py-3 mb-4 mx-auto"
+                style={{ width: "650px", height: "150px" }}
+              >
+                {/* this is where we are going to place the estimated quote */}
+                <h4 className="m-0">Your Estimated Price: $100</h4>
+              </div>
+              <div className="text-center pb-5">
+                <button
+                  type="submit"
+                  className="btn btn-login-pg"
+                  //onClick={handleSubmit}
+                  style={{ width: "650px" }}
+                >
+                  Create Quote!
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

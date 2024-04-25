@@ -266,6 +266,12 @@ body {
     border-radius: 30px;
 }
 
+.card-body-quote {
+    background-color: #F3E9D2;
+    border-radius: 30px;
+    color: #114B5F;
+}
+
 /* grid */
 .col-xs {
     background-color: #FFFFFF;
