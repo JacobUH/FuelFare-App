@@ -1,6 +1,6 @@
 # FuelFare: Find the best fuel prices for you.
 ### Created By: Team 1
-[![Fuelfare Official]([https://lh3.googleusercontent.com/drive-viewer/AKGpihaIj9HcF_CWGdvme_tIn6zQy1IRAYwMyMJgnSJtnE3-zO7obHuBj3v-p8FyGCS4wUo92dDz9x-mddF8bIZUzbsbBAfoQPTr9vA=s1600-rw-v1](https://lh3.googleusercontent.com/drive-viewer/AKGpihbNy7giWQQtIhby9V6W5WzPQi89L9uNOHLBhd9lqY9RMHQDbsQ-KAWkeUBzsTN0iy_L815jRpjQxifJrmGq6zhuDCBV_gEfE_0=s1600-rw-v1))](https://www.figma.com/file/3TTFta2PAWYH9ojeR71HiL/FuelFare-Frontend-Design?type=design&node-id=0-1&mode=design&t=TWdWrl7VmbBlGbJO-0)
+[![FuelFare Post](https://lh3.googleusercontent.com/drive-viewer/AKGpihaIj9HcF_CWGdvme_tIn6zQy1IRAYwMyMJgnSJtnE3-zO7obHuBj3v-p8FyGCS4wUo92dDz9x-mddF8bIZUzbsbBAfoQPTr9vA=s1600-rw-v1)](https://lh3.googleusercontent.com/drive-viewer/AKGpihbNy7giWQQtIhby9V6W5WzPQi89L9uNOHLBhd9lqY9RMHQDbsQ-KAWkeUBzsTN0iy_L815jRpjQxifJrmGq6zhuDCBV_gEfE_0=s1600-rw-v1)](https://www.figma.com/file/3TTFta2PAWYH9ojeR71HiL/FuelFare-Frontend-Design?type=design&node-id=0-1&mode=design&t=TWdWrl7VmbBlGbJO-0)
 
 Welcome to the repository for FuelFare! Created at the University of Houston in the COSC 4353 Software Design class. This web application project is a collaboration of Team 1.
 
