@@ -108,4 +108,3 @@ describe("loginController", () => {
     expect(res.json).toHaveBeenCalledWith({ error: "Internal server error" });
   });
 });
-

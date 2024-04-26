@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-    newQuote,
-    getQuotePrice 
+    viewQuoteFromID,
 } = require('../controllers/newQuoteController');
 
-router.post("/", newQuote);
-router.get("/", getQuotePrice);
+router.get("/", viewQuoteFromID);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import BackButton from "../components/BackButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -43,7 +43,21 @@ export default function New() {
     }
   };
 
-  const [marketPrice, setMarketPrice] = useState("");
+  const [marketPrice, setMarketPrice] = useState(0.0);
+  const [marketPriceString, setMarketPriceString] = useState("");
+  const [quoteRequested, setQuoteRequested] = useState(false);
+  const [pricePerGallon, setPricePerGallon] = useState(0.0);
+  const [quotePrice, setQuotePrice] = useState(0.0);
+  const [companyAddress, setCompanyAddress] = useState("");
+
+  useEffect(() => {
+    console.log("pricePerGallon:", pricePerGallon);
+    const qp = pricePerGallon * formData.numGallons;
+    setQuotePrice(parseFloat(qp.toFixed(2)));
+  }, [pricePerGallon]);
+  useEffect(() => {
+    console.log("quotePrice:", quotePrice);
+  }, [quotePrice]);
 
   const handleFuelTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedFuelType = e.target.value;
@@ -51,38 +65,149 @@ export default function New() {
 
     switch (selectedFuelType) {
       case "regular":
-        setMarketPrice("$1.50 USD"); // Regular
+        setMarketPrice(1.5); // Regular
+        setMarketPriceString("$1.50 USD");
         break;
       case "mid":
-        setMarketPrice("$1.75 USD"); // Mid
+        setMarketPrice(1.75); // Mid
+        setMarketPriceString("$1.75 USD");
         break;
       case "premium":
-        setMarketPrice("$2.00 USD"); // Premium
+        setMarketPrice(2.0); // Premium
+        setMarketPriceString("$2.00 USD");
         break;
       case "diesel":
-        setMarketPrice("$2.20 USD"); // Diesel
+        setMarketPrice(2.2); // Diesel
+        setMarketPriceString("$2.20 USD");
         break;
       default:
-        setMarketPrice(""); // Default price
+        setMarketPrice(0); // Default price
+        setMarketPriceString("");
         break;
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = (today.getMonth() + 1).toString();
+    let day = today.getDate().toString();
+
+    // Add leading zero if month/day is less than 10
+    if (month.length === 1) month = "0" + month;
+    if (day.length === 1) day = "0" + day;
+
+    return `${year}-${month}-${day}`;
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:8080/fetchUserData",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const userData = response.data.userSetup;
+        setCompanyAddress(userData.companyAddress1);
+        console.log("Company address:", userData.companyAddress1);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []); // Empty dependency array to ensure the effect runs only once
+
+  const handleRequest = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       // Include userId in formData
-      const userId = localStorage.getItem('userId');
+      const userId = localStorage.getItem("userId");
 
-      const quoteData = { user: userId, ...formData}
+      const quoteData = { user: userId, ...formData, address: companyAddress };
       console.log("Form data for new quote:", JSON.stringify(quoteData));
+      setQuoteRequested(true);
 
+      const fetchQuoteCalcData = async () => {
+        try {
+          const token = localStorage.getItem("token");
+
+          const response = await axios.get(
+            "http://localhost:8080/getQuotePrice",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log("Response data: ", response.data);
+          const userState = response.data.userState;
+          console.log("User State: ", userState);
+          const countQuote = response.data.countQuote;
+          console.log("User Quotes: ", countQuote);
+          let margin = 0.1;
+
+          console.log("Number of Gallons:", formData.numGallons);
+
+          if (userState === "TX") {
+            margin = margin + 0.02;
+          } else {
+            margin = margin + 0.04;
+          }
+          if (countQuote > 0) {
+            margin = margin - 0.01;
+          }
+          if (formData.numGallons > 1000) {
+            margin = margin + 0.02;
+          } else {
+            margin = margin + 0.03;
+          }
+          console.log("pre margin: ", margin);
+          margin = margin * marketPrice;
+          console.log("market price: ", marketPrice);
+          console.log("margin: ", margin);
+          const ppg = marketPrice + margin;
+          setPricePerGallon(ppg);
+          console.log(pricePerGallon);
+          // const qp = pricePerGallon * formData.numGallons;
+          // setQuotePrice(qp);
+          console.log(quotePrice);
+          // setQuoteRequested(true);
+        } catch (error) {
+          console.error("Error fetching calc data:", error);
+        }
+      };
+
+      fetchQuoteCalcData();
+    } catch (error) {
+      console.error("Error creating quote:", error);
+    }
+  };
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const userId = localStorage.getItem("userId");
+      const quoteData = {
+        user: userId,
+        ...formData,
+        address: companyAddress,
+        pricePerGallon: pricePerGallon,
+        totalPrice: quotePrice,
+      };
       const response = await axios.post("http://localhost:8080/new", quoteData);
       console.log("Quote created:", response.data);
       alert("Redirecting to Estimated Quote...");
-      navigate("/view");
+      setQuoteRequested(false);
+      const id = response.data._id;
+      navigate(`/view/${id}`);
     } catch (error) {
-      console.error("Error creating quote:", error);
+      console.error("Error signing up:", error);
     }
   };
 
@@ -94,31 +219,34 @@ export default function New() {
     >
       <Navbar />
       <BackButton className="ms-3" />
-      <div className="container mt-5">
+      <div
+        className="container mt-5"
+        style={{ overflowY: "auto", maxHeight: "calc(100vh - 280px)" }}
+      >
         <div
           className="card mx-auto no-margin-top"
           style={{ maxWidth: "1000px", borderRadius: 30 }}
         >
           <div className="card-body px-5" style={{ borderRadius: 30 }}>
             <h1 className="my-4 Setup">Create a New Quote</h1>
-
-            <form className="row g-3 row-cols-3" onSubmit={handleSubmit}>
+            <form className="row g-3 row-cols-3" onSubmit={handleRequest}>
               <div className="col-sm-2">
                 <label htmlFor="inputNum" className="form-label">
                   # of Gallons
                 </label>
                 <input
-                  type="num"
+                  type="number"
                   className="form-control"
                   id="inputNum"
                   placeholder="100"
                   name="numGallons"
                   value={formData.numGallons}
                   onChange={handleInputChange}
+                  min={1}
+                  step={1}
                   required
                 />
               </div>
-
               <div className="col-sm-2">
                 <label htmlFor="inputFuel" className="form-label">
                   Fuel Type
@@ -139,7 +267,6 @@ export default function New() {
                   <option value="diesel">Diesel</option>
                 </select>
               </div>
-
               <div className="col-3">
                 <label htmlFor="PricePerGallon" className="form-label">
                   Market Price per Gallon
@@ -149,13 +276,27 @@ export default function New() {
                   id="PricePerGallon"
                   name="pricePerGal"
                   aria-label="Disabled input example"
-                  value={marketPrice}
+                  value={marketPriceString}
                   disabled
                   readOnly
                 />
               </div>
-
-              <div className="col-lg-9">
+              <div className="col-sm-3">
+                <label htmlFor="deliveryDate" className="form-label">
+                  Delivery Date
+                </label>
+                <input
+                  type="date"
+                  className="form-control"
+                  id="deliveryDate"
+                  name="deliveryDate"
+                  value={formData.deliveryDate}
+                  min={getCurrentDate()}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="col-lg-10">
                 <label htmlFor="companyAddress" className="form-label">
                   Company Address
                 </label>
@@ -164,75 +305,49 @@ export default function New() {
                   id="companyAddress"
                   aria-label="Default control example"
                   name="address"
-                  value={formData.address}
+                  value={companyAddress}
                   placeholder="Insert Address Here"
                   onChange={handleInputChange}
+                  required
+                  disabled
                 />
               </div>
-
-              <div className="col-md-4">
-                <label htmlFor="inputDate" className="form-label">
-                  Delivery Date
-                </label>
-                <div className="input-group">
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="month"
-                    value={formData.deliveryDate.split("/")[0]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Month</option>
-                    <option value="1">Jan</option>
-                    <option value="2">Feb</option>
-                    <option value="3">Mar</option>
-                    <option value="4">Apr</option>
-                    <option value="5">May</option>
-                    <option value="6">Jun</option>
-                    <option value="7">Jul</option>
-                    <option value="8">Aug</option>
-                    <option value="9">Sep</option>
-                    <option value="10">Oct</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Dec</option>
-                  </select>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="day"
-                    value={formData.deliveryDate.split("/")[1]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Day</option>
-                    {Array.from({ length: 31 }, (_, index) => (
-                      <option key={index + 1} value={index + 1}>
-                        {index + 1}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="year"
-                    value={formData.deliveryDate.split("/")[2]}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Year</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                  </select>
-                </div>
-              </div>
-
               <div className="col-12 pb-2">
                 <button type="submit" className="btn btn-login-pg">
-                  Create Quote
+                  Request Quote
                 </button>
               </div>
             </form>
           </div>
         </div>
+        {quoteRequested && (
+          <div className="card text-center">
+            <div className="card-body-quote">
+              <h1 className="card-title p-2 mt-5">Estimated Fuel Quote</h1>
+              <h5 className="card-text">
+                Here is what we calculated based on your information inputted
+                above.
+              </h5>
+              <div
+                className="bg-success text-white d-flex align-items-center justify-content-center py-3 mb-4 mx-auto"
+                style={{ width: "650px", height: "150px" }}
+              >
+                {/* this is where we are going to place the estimated quote */}
+                <h4 className="m-0">Your Estimated Price: ${quotePrice}</h4>
+              </div>
+              <div className="text-center pb-5">
+                <button
+                  type="submit"
+                  className="btn btn-login-pg"
+                  onClick={handleSubmit}
+                  style={{ width: "650px" }}
+                >
+                  Create Quote!
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

@@ -128,7 +128,7 @@ body {
     margin-top: 5vh;
     width: 50vh;
     height: 50vh;
-    background-color: #C6DABF;
+    background-color: #7dc8b1;
     color: #114B5F;
     border-radius: 15px;
     border: 3px solid #114B5F;
@@ -137,7 +137,7 @@ body {
 }
 
 .dashboard-btns:hover {
-    background-color: #F3E9D2;
+    background-color: #5ae7bd;
     color: #114B5F;
     border: 3px solid #114B5F;
 }
@@ -149,7 +149,7 @@ body {
 }
 
 .hist-card {
-    background-color: lightgray;
+    background-color: hwb(0 83% 17%);
     margin: auto;
     width: 95%;
     max-width: 800px; /* Limit maximum width for better readability */
@@ -266,6 +266,12 @@ body {
     border-radius: 30px;
 }
 
+.card-body-quote {
+    background-color: #F3E9D2;
+    border-radius: 30px;
+    color: #114B5F;
+}
+
 /* grid */
 .col-xs {
     background-color: #FFFFFF;
@@ -277,6 +283,11 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+/* hover effect */
+.hover-effect:hover {
+    background-color: rgb(222, 243, 223);
+  }  
 
 /* Adjustments for smallest screens */
 @media screen and (max-height: 555px) {

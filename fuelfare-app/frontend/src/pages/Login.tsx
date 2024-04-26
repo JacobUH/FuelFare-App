@@ -23,8 +23,8 @@ export default function Login() {
 
   const [loginFormData, setLoginFormData] = useState<LoginFormData>({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const navigate = useNavigate();
 
@@ -38,45 +38,60 @@ export default function Login() {
     setLoginFormData({ ...loginFormData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // User creating a new account
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = formData;
 
-    // Store the email and password in sessionStorage
-    sessionStorage.setItem("email", email);
-    sessionStorage.setItem("password", password);
-
-    // DEBUGGING
-    console.log("Stored Email:", email);
-    console.log("Stored Password:", password);
-
-    // Redirecting to the signup page
-    navigate("/setup");
-  };
-
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // DEBUGGING
-    console.log(loginFormData)
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isEmailValid) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
     try {
-      const response = await axios.post("http://localhost:8080/login", loginFormData);
-      console.log('Login response:', response.data);
+      await axios.post("http://localhost:8080/signup", { email, password });
+
+      // Store email and password in session storage
+      sessionStorage.setItem("email", email);
+      // sessionStorage.setItem("password", password);
+      // console.log("Stored Email:", email);
+      // console.log("Stored Password:", password);
+
+      navigate("/setup");
+    } catch (error) {
+      console.error("Signup failed:", error);
+      alert("Signup failed. Please try again.");
+    }
+  };
+
+  // User logging into existing account
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // DEBUGGING
+    console.log(loginFormData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/login",
+        loginFormData
+      );
+      console.log("Login response:", response.data);
 
       // Handle successful login, e.g., store token in localStorage and redirect
       // Also store userId for new quotes
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('userId', response.data.userId);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userId", response.data.userId);
 
       console.log(localStorage);
 
       navigate("/dashboard");
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
       // Handle login error, e.g., display error message
-      alert('Login failed. Please check your credentials.');
+      alert("Login failed. Please check your credentials.");
     }
   };
 
@@ -132,6 +147,7 @@ export default function Login() {
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
+                      minLength={8}
                       required
                     />
                   </div>
@@ -189,7 +205,9 @@ export default function Login() {
                     />
                   </div>
                   <div className="text-center">
-                  <button type="submit" className="btn btn-login-pg">Login</button>
+                    <button type="submit" className="btn btn-login-pg">
+                      Login
+                    </button>
                   </div>
                 </form>
               </div>

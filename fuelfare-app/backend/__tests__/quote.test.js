@@ -1,27 +1,27 @@
-const { getQuotesByUserId } = require('../controllers/quoteController');
-const NewQuote = require('../models/newQuote');
+const { getQuotesByUserId } = require("../controllers/quoteController");
+const NewQuote = require("../models/newQuote");
 
 // Mocking the NewQuote model methods
-jest.mock('../models/newQuote');
+jest.mock("../models/newQuote");
 
-describe('getQuotesByUserId', () => {
-  test('should return quotes for a valid user ID', async () => {
-    const req = { user: { _id: 'validUserID' } };
+describe("getQuotesByUserId", () => {
+  test("should return quotes for a valid user ID", async () => {
+    const req = { user: { _id: "validUserID" } };
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
 
-    NewQuote.find.mockResolvedValueOnce(['quote1', 'quote2']);
+    NewQuote.find.mockResolvedValueOnce(["quote1", "quote2"]);
 
     await getQuotesByUserId(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(['quote1', 'quote2']);
+    expect(res.json).toHaveBeenCalledWith(["quote1", "quote2"]);
   });
 
-  test('should handle error when fetching quotes', async () => {
-    const req = { user: { _id: 'validUserID' } };
+  test("should handle error when fetching quotes", async () => {
+    const req = { user: { _id: "validUserID" } };
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
@@ -32,6 +32,6 @@ describe('getQuotesByUserId', () => {
     await getQuotesByUserId(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ error: 'Internal server error' });
+    expect(res.json).toHaveBeenCalledWith({ error: "Internal server error" });
   });
 });
