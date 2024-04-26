@@ -149,7 +149,7 @@ body {
 }
 
 .hist-card {
-    background-color: lightgray;
+    background-color: hwb(0 83% 17%);
     margin: auto;
     width: 95%;
     max-width: 800px; /* Limit maximum width for better readability */
