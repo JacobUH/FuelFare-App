@@ -155,8 +155,8 @@ export default function New() {
       const quoteData = { user: userId, ...formData, pricePerGallon: pricePerGallon, totalPrice: quotePrice };
       const response = await axios.post("http://localhost:8080/new", quoteData);
       console.log("Quote created:", response.data);
-      setQuoteRequested(true);
       alert("Redirecting to Estimated Quote...");
+      setQuoteRequested(false);
       const id = response.data._id;
       navigate(`/view/${id}`);
     } catch (error) {
