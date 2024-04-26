@@ -41,6 +41,15 @@ export const Navbar: React.FC = () => {
     e.currentTarget.style.transform = "scale(1)"; // Reset the scale on leave
   };
 
+  const nonClickablePaths = [
+    "/",
+    "/home",
+    "/contributions",
+    "/login",
+    "/setup",
+    "/settings",
+  ];
+
   return (
     <>
       {showLogoutScreen && <LogoutScreen onClose={handleLogoutScreenClose} />}{" "}
@@ -57,15 +66,37 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Logo Icon and Company Name */}
-          <div
-            className="navbar-brand text"
-            style={logoStyle}
-            onMouseOver={handleLogoHover}
-            onMouseLeave={handleLogoLeave}
-          >
-            <img src="/fuelfare_logo.svg" width="130" height="130" alt="Logo" />
-          </div>
-
+          {nonClickablePaths.includes(location.pathname) ? (
+            <div
+              className="navbar-brand text"
+              style={logoStyle}
+              onMouseOver={handleLogoHover}
+              onMouseLeave={handleLogoLeave}
+            >
+              <img
+                src="/fuelfare_logo.svg"
+                width="130"
+                height="130"
+                alt="Logo"
+              />
+            </div>
+          ) : (
+            <Link to="/dashboard">
+              <div
+                className="navbar-brand text"
+                style={logoStyle}
+                onMouseOver={handleLogoHover}
+                onMouseLeave={handleLogoLeave}
+              >
+                <img
+                  src="/fuelfare_logo.svg"
+                  width="130"
+                  height="130"
+                  alt="Logo"
+                />
+              </div>
+            </Link>
+          )}
           {/* Contributors and Settings icons on the right */}
           <div className="d-flex">
             <Link to="/contributions" className="navbar-brand">
