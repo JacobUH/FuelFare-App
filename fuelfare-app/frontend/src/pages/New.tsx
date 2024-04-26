@@ -51,7 +51,7 @@ export default function New() {
   useEffect(() => {
     console.log("pricePerGallon:", pricePerGallon);
     const qp = pricePerGallon * formData.numGallons;
-    setQuotePrice(qp);
+    setQuotePrice(parseFloat(qp.toFixed(2)));
   }, [pricePerGallon]);
   useEffect(() => {
     console.log("quotePrice:", quotePrice);
@@ -152,7 +152,12 @@ export default function New() {
     e.preventDefault();
     try {
       const userId = localStorage.getItem("userId");
-      const quoteData = { user: userId, ...formData, pricePerGallon: pricePerGallon, totalPrice: quotePrice };
+      const quoteData = {
+        user: userId,
+        ...formData,
+        pricePerGallon: pricePerGallon,
+        totalPrice: quotePrice,
+      };
       const response = await axios.post("http://localhost:8080/new", quoteData);
       console.log("Quote created:", response.data);
       alert("Redirecting to Estimated Quote...");
