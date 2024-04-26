@@ -137,7 +137,7 @@ body {
 }
 
 .dashboard-btns:hover {
-    background-color: #F3E9D2;
+    background-color: #7dc8b1;
     color: #114B5F;
     border: 3px solid #114B5F;
 }
@@ -283,6 +283,11 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+/* hover effect */
+.hover-effect:hover {
+    background-color: rgb(222, 243, 223);
+  }  
 
 /* Adjustments for smallest screens */
 @media screen and (max-height: 555px) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 interface Quote {
@@ -18,18 +18,20 @@ export default function History() {
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
 
         const response = await axios.get("http://localhost:8080/quotes", {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
 
-        const quotesWithIds: Quote[] = response.data.map((quote: Quote, index: number) => ({
-          ...quote,
-          id: index + 1
-        }));
+        const quotesWithIds: Quote[] = response.data.map(
+          (quote: Quote, index: number) => ({
+            ...quote,
+            id: index + 1,
+          })
+        );
 
         setQuotes(quotesWithIds);
       } catch (error) {
@@ -39,6 +41,11 @@ export default function History() {
 
     fetchQuotes();
   }, []);
+
+  const navigate = useNavigate();
+  const handleRowClick = (_id) => {
+    navigate(`/view/${_id}`);
+  };
 
   return (
     <div
@@ -70,12 +77,24 @@ export default function History() {
                 </thead>
                 <tbody>
                   {quotes.map((quote) => (
-                    <tr key={quote._id}>
-                      <td>{quote.id}</td>
+                    <tr
+                      key={quote._id}
+                      onClick={() => handleRowClick(quote._id)}
+                      style={{ cursor: "pointer" }}
+                      className="hover-effect"
+                    >
+                      <td>{quote._id}</td>
                       <td style={{ textAlign: "right" }}>{quote.numGallons}</td>
-                      <td style={{ textAlign: "right" }}>{quote.fuelType}</td>
+                      <td style={{ textAlign: "right" }}>
+                        {quote.fuelType.charAt(0).toUpperCase() +
+                          quote.fuelType.slice(1)}
+                      </td>
                       <td style={{ textAlign: "right" }}>{quote.address}</td>
-                      <td style={{ textAlign: "right" }}>{quote.deliveryDate}</td>
+                      <td style={{ textAlign: "right" }}>
+                        {new Date(quote.deliveryDate).toLocaleDateString(
+                          "en-US"
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
