@@ -9,12 +9,12 @@ const fetchUserData = async (req, res) => {
   try {
     const userId = req.user._id; // Assuming user ID is available in the request
 
-    console.log("User ID:", userId);
+    //console.log("User ID:", userId);
 
     // Find the user's setup information by ID
     const userSetup = await Setup.findOne({ credentials: userId });
 
-    console.log("User setup:", userSetup);
+    //console.log("User setup:", userSetup);
 
     // Check if the user setup information exists
     if (!userSetup) {
@@ -44,8 +44,8 @@ const updateAccount = async (req, res) => {
     const {
       fullName,
       companyName,
-      address1,
-      address2,
+      companyAddress1,
+      companyAddress2,
       city,
       state,
       country,
@@ -71,8 +71,8 @@ const updateAccount = async (req, res) => {
 
     userSetup.fullName = fullName;
     userSetup.companyName = companyName;
-    userSetup.address1 = address1;
-    userSetup.address2 = address2;
+    userSetup.companyAddress1 = companyAddress1;
+    userSetup.companyAddress2 = companyAddress2;
     userSetup.city = city;
     userSetup.state = state;
     userSetup.country = country;

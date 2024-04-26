@@ -67,7 +67,11 @@ export default function Setup() {
     } catch (error) {
       // Check if the error is due to email already existing
       const err = error as any;
-      if (err.response && err.response.data && err.response.data.error === "Email already exists in the database") {
+      if (
+        err.response &&
+        err.response.data &&
+        err.response.data.error === "Email already exists in the database"
+      ) {
         setError("Email already exists in the fuelfare system.");
       } else {
         console.error("Error signing up:", error);
@@ -165,6 +169,7 @@ export default function Setup() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
@@ -181,6 +186,7 @@ export default function Setup() {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
@@ -197,6 +203,7 @@ export default function Setup() {
                   name="companyAddress1"
                   value={formData.companyAddress1}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
@@ -228,6 +235,7 @@ export default function Setup() {
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
@@ -241,6 +249,7 @@ export default function Setup() {
                   name="state"
                   value={formData.state}
                   onChange={handleInputChange}
+                  required
                 >
                   <option selected>Choose...</option>
                   {states.map((state, index) => (
@@ -259,6 +268,7 @@ export default function Setup() {
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
+                  required
                 >
                   <option selected>Choose...</option>
                   <option>United States</option>
@@ -279,6 +289,7 @@ export default function Setup() {
                   name="zipCode"
                   value={formData.zipCode}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
