@@ -48,6 +48,7 @@ export default function New() {
   const [quoteRequested, setQuoteRequested] = useState(false);
   const [pricePerGallon, setPricePerGallon] = useState(0.0);
   const [quotePrice, setQuotePrice] = useState(0.0);
+  const [companyAddress, setCompanyAddress] = useState("");
 
   useEffect(() => {
     console.log("pricePerGallon:", pricePerGallon);
@@ -99,13 +100,36 @@ export default function New() {
     return `${year}-${month}-${day}`;
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:8080/fetchUserData",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const userData = response.data.userSetup;
+        setCompanyAddress(userData.companyAddress1);
+        console.log("Company address:", userData.companyAddress1);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []); // Empty dependency array to ensure the effect runs only once
+
   const handleRequest = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       // Include userId in formData
       const userId = localStorage.getItem("userId");
 
-      const quoteData = { user: userId, ...formData };
+      const quoteData = { user: userId, ...formData, address: companyAddress };
       console.log("Form data for new quote:", JSON.stringify(quoteData));
       setQuoteRequested(true);
 
@@ -172,6 +196,7 @@ export default function New() {
       const quoteData = {
         user: userId,
         ...formData,
+        address: companyAddress,
         pricePerGallon: pricePerGallon,
         totalPrice: quotePrice,
       };
@@ -280,10 +305,11 @@ export default function New() {
                   id="companyAddress"
                   aria-label="Default control example"
                   name="address"
-                  value={formData.address}
+                  value={companyAddress}
                   placeholder="Insert Address Here"
                   onChange={handleInputChange}
                   required
+                  disabled
                 />
               </div>
               <div className="col-12 pb-2">

@@ -141,63 +141,18 @@ export default function UpdateAccount() {
         "Your password has been successfully updated! You will now be redirected to the login page to sign in with your new password."
       );
       navigate("/login");
-    } catch (error) {
-      console.error("Error updating user info:", error);
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.status === 400 &&
+        error.response.data.error === "Current password is incorrect"
+      ) {
+        alert("The current password you entered is incorrect.");
+      } else {
+        console.error("Error updating user info:", error);
+      }
     }
   };
-
-  const states = [
-    "AL",
-    "AK",
-    "AZ",
-    "AR",
-    "CA",
-    "CO",
-    "CT",
-    "DE",
-    "FL",
-    "GA",
-    "HI",
-    "ID",
-    "IL",
-    "IN",
-    "IA",
-    "KS",
-    "KY",
-    "LA",
-    "ME",
-    "MD",
-    "MA",
-    "MI",
-    "MN",
-    "MS",
-    "MO",
-    "MT",
-    "NE",
-    "NV",
-    "NH",
-    "NJ",
-    "NM",
-    "NY",
-    "NC",
-    "ND",
-    "OH",
-    "OK",
-    "OR",
-    "PA",
-    "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UT",
-    "VT",
-    "VA",
-    "WA",
-    "WV",
-    "WI",
-    "WY",
-  ];
 
   /* Hooks for setting input constraints */
   const [nameMaxLength] = useState(50);
@@ -311,33 +266,28 @@ export default function UpdateAccount() {
                     <label htmlFor="inputState" className="form-label">
                       State
                     </label>
-                    <select
+                    <input
+                      type="text"
+                      className="form-control"
                       id="inputState"
-                      className="form-select"
-                      onChange={handleInputChange}
                       name="state"
-                    >
-                      <option selected>Choose...</option>
-                      {states.map((state, index) => (
-                        <option key={index}>{state}</option>
-                      ))}
-                    </select>
+                      value={updateUserInfoFormData.state}
+                      disabled
+                    />
                   </div>
 
                   <div className="col-md-4">
                     <label htmlFor="inputState" className="form-label">
                       Country
                     </label>
-                    <select
-                      id="inputState"
-                      className="form-select"
-                      onChange={handleInputChange}
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputCountry"
                       name="country"
-                    >
-                      <option selected>Choose...</option>
-                      <option>United States</option>
-                      <option>Others Here...</option>
-                    </select>
+                      value={updateUserInfoFormData.country}
+                      disabled
+                    />
                   </div>
 
                   <div className="col-md-2">
@@ -389,6 +339,7 @@ export default function UpdateAccount() {
                       name="currentPassword"
                       value={updatePWFormData.currentPassword}
                       onChange={handlePWInputChange}
+                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -405,6 +356,8 @@ export default function UpdateAccount() {
                       name="newPassword"
                       value={updatePWFormData.newPassword}
                       onChange={handlePWInputChange}
+                      minLength={8}
+                      required
                     />
                   </div>
                   <div className="mb-3">
@@ -421,6 +374,8 @@ export default function UpdateAccount() {
                       name="confNewPassword"
                       value={updatePWFormData.confNewPassword}
                       onChange={handlePWInputChange}
+                      minLength={8}
+                      required
                     />
                   </div>
                   <div className="text-center">
