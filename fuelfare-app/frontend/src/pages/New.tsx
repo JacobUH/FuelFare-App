@@ -48,6 +48,7 @@ export default function New() {
   const [quoteRequested, setQuoteRequested] = useState(false);
   const [pricePerGallon, setPricePerGallon] = useState(0.0);
   const [quotePrice, setQuotePrice] = useState(0.0);
+
   useEffect(() => {
     console.log("pricePerGallon:", pricePerGallon);
     const qp = pricePerGallon * formData.numGallons;
@@ -85,6 +86,19 @@ export default function New() {
     }
   };
 
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = (today.getMonth() + 1).toString();
+    let day = today.getDate().toString();
+
+    // Add leading zero if month/day is less than 10
+    if (month.length === 1) month = "0" + month;
+    if (day.length === 1) day = "0" + day;
+
+    return `${year}-${month}-${day}`;
+  };
+
   const handleRequest = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -113,6 +127,9 @@ export default function New() {
           const countQuote = response.data.countQuote;
           console.log("User Quotes: ", countQuote);
           let margin = 0.1;
+
+          console.log("Number of Gallons:", formData.numGallons);
+
           if (userState === "TX") {
             margin = margin + 0.02;
           } else {
@@ -193,13 +210,15 @@ export default function New() {
                   # of Gallons
                 </label>
                 <input
-                  type="num"
+                  type="number"
                   className="form-control"
                   id="inputNum"
                   placeholder="100"
                   name="numGallons"
                   value={formData.numGallons}
                   onChange={handleInputChange}
+                  min={1}
+                  step={1}
                   required
                 />
               </div>
@@ -247,6 +266,7 @@ export default function New() {
                   id="deliveryDate"
                   name="deliveryDate"
                   value={formData.deliveryDate}
+                  min={getCurrentDate()}
                   onChange={handleInputChange}
                   required
                 />
