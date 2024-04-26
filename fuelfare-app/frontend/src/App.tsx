@@ -22,7 +22,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />
-          <Route path="/view" element={<View />} />
+          <Route path="/view/:_id" element={<View />} />
           <Route path="/new" element={<New />} />
           <Route path="/updateAccount" element={<UpdateAccount />} />
         </Routes>

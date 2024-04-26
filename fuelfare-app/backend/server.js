@@ -18,6 +18,10 @@ app.get("/", (req, res) => {
 
 // Implement Routes Here
 
+// SignUp
+const signUpRouter = require("./routes/signUpRoutes");
+app.use("/signup", signUpRouter);
+
 // Setup
 const setupRouter = require("./routes/setupRoutes");
 app.use("/setup", setupRouter);
@@ -30,11 +34,20 @@ app.use("/login", loginRouter);
 const newQuoteRouter = require("./routes/newQuoteRoutes");
 app.use("/new", newQuoteRouter);
 
+const getQuotePriceRouter = require("./routes/newQuoteRoutes");
+app.use("/getQuotePrice", authenticateToken, getQuotePriceRouter);
+
 // View Quote
 const quotesRoute = require("./routes/quoteRoutes");
 app.use("/quotes", authenticateToken, quotesRoute);
 
+const viewQuoteRoute = require("./routes/quoteRoutes");
+app.use("/viewQuote", authenticateToken, viewQuoteRoute);
+
 // Update Account
+const fetchUserDataRoute = require("./routes/accountRoutes");
+app.use("/fetchUserData", authenticateToken, fetchUserDataRoute);
+
 const updateAccRoute = require("./routes/accountRoutes");
 app.use("/updateAccount", authenticateToken, updateAccRoute);
 

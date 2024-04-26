@@ -35,12 +35,10 @@ export default function Setup() {
   useEffect(() => {
     // Retrieve data from sessionStorage
     const storedEmail = sessionStorage.getItem("email") || "";
-    const storedPassword = sessionStorage.getItem("password") || "";
 
     // Update component state with email and password
     setFormData((prevState) => ({
       email: storedEmail,
-      password: storedPassword,
       ...prevState,
     }));
   }, [location.search]);
