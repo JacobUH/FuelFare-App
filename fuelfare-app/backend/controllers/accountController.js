@@ -44,8 +44,8 @@ const updateAccount = async (req, res) => {
     const {
       fullName,
       companyName,
-      address1,
-      address2,
+      companyAddress1,
+      companyAddress2,
       city,
       state,
       country,
@@ -71,8 +71,8 @@ const updateAccount = async (req, res) => {
 
     userSetup.fullName = fullName;
     userSetup.companyName = companyName;
-    userSetup.address1 = address1;
-    userSetup.address2 = address2;
+    userSetup.companyAddress1 = companyAddress1;
+    userSetup.companyAddress2 = companyAddress2;
     userSetup.city = city;
     userSetup.state = state;
     userSetup.country = country;
