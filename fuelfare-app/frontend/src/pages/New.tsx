@@ -55,7 +55,6 @@ export default function New() {
   }, [pricePerGallon]);
   useEffect(() => {
     console.log("quotePrice:", quotePrice);
-    setQuoteRequested(true);
   }, [quotePrice]);
 
   const handleFuelTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,7 +63,7 @@ export default function New() {
 
     switch (selectedFuelType) {
       case "regular":
-        setMarketPrice(1.50); // Regular
+        setMarketPrice(1.5); // Regular
         setMarketPriceString("$1.50 USD");
         break;
       case "mid":
@@ -72,11 +71,11 @@ export default function New() {
         setMarketPriceString("$1.75 USD");
         break;
       case "premium":
-        setMarketPrice(2.00); // Premium
+        setMarketPrice(2.0); // Premium
         setMarketPriceString("$2.00 USD");
         break;
       case "diesel":
-        setMarketPrice(2.20); // Diesel
+        setMarketPrice(2.2); // Diesel
         setMarketPriceString("$2.20 USD");
         break;
       default:
@@ -94,34 +93,38 @@ export default function New() {
 
       const quoteData = { user: userId, ...formData };
       console.log("Form data for new quote:", JSON.stringify(quoteData));
+      setQuoteRequested(true);
 
       const fetchQuoteCalcData = async () => {
         try {
-          const token = localStorage.getItem('token');
-  
-          const response = await axios.get("http://localhost:8080/getQuotePrice", {
-            headers: {
-              Authorization: `Bearer ${token}`
+          const token = localStorage.getItem("token");
+
+          const response = await axios.get(
+            "http://localhost:8080/getQuotePrice",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-          });
+          );
           console.log("Response data: ", response.data);
           const userState = response.data.userState;
           console.log("User State: ", userState);
           const countQuote = response.data.countQuote;
           console.log("User Quotes: ", countQuote);
           let margin = 0.1;
-          if(userState === "TX"){
-            margin = margin + .02;
+          if (userState === "TX") {
+            margin = margin + 0.02;
           } else {
-            margin = margin + .04;
+            margin = margin + 0.04;
           }
-          if(countQuote > 0){
-            margin = margin - .01; 
+          if (countQuote > 0) {
+            margin = margin - 0.01;
           }
-          if(formData.numGallons > 1000){
-            margin = margin + .02;
+          if (formData.numGallons > 1000) {
+            margin = margin + 0.02;
           } else {
-            margin = margin + .03
+            margin = margin + 0.03;
           }
           console.log("pre margin: ", margin);
           margin = margin * marketPrice;
@@ -137,10 +140,9 @@ export default function New() {
         } catch (error) {
           console.error("Error fetching calc data:", error);
         }
-      }
+      };
 
       fetchQuoteCalcData();
-      
     } catch (error) {
       console.error("Error creating quote:", error);
     }
@@ -148,9 +150,13 @@ export default function New() {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try{
+    try {
       const userId = localStorage.getItem("userId");
-      const quoteData = { user: userId, ...formData, pricePerGallon: pricePerGallon };
+      const quoteData = {
+        user: userId,
+        ...formData,
+        pricePerGallon: pricePerGallon,
+      };
       const response = await axios.post("http://localhost:8080/new", quoteData);
       console.log("Quote created:", response.data);
       setQuoteRequested(true);
@@ -161,7 +167,6 @@ export default function New() {
     }
   };
 
-  
   return (
     <div
       className={`New ${
