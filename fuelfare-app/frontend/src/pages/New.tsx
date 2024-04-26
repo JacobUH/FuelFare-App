@@ -51,7 +51,7 @@ export default function New() {
   useEffect(() => {
     console.log("pricePerGallon:", pricePerGallon);
     const qp = pricePerGallon * formData.numGallons;
-    setQuotePrice(qp);
+    setQuotePrice(parseFloat(qp.toFixed(2)));
   }, [pricePerGallon]);
   useEffect(() => {
     console.log("quotePrice:", quotePrice);
