@@ -8,6 +8,7 @@ interface Quote {
   _id: string;
   numGallons: number;
   fuelType: string;
+  totalPrice: number;
   address: string;
   deliveryDate: string;
   id: number;
@@ -20,6 +21,7 @@ export default function View() {
     _id: "",
     numGallons: 0,
     fuelType: "",
+    totalPrice: 0,
     address: "",
     deliveryDate: "",
     id: 0
@@ -43,6 +45,7 @@ export default function View() {
           _id: response.data._id,
           numGallons: response.data.numGallons,
           fuelType: response.data.fuelType,
+          totalPrice: response.data.totalPrice,
           address: response.data.address,
           deliveryDate: response.data.deliveryDate,
           id: response.data.user
@@ -97,7 +100,8 @@ export default function View() {
               <div className="row pb-1 mx-1">
                 <div className="col-xs text-black fs-5 p-1">
                   <div className="ps-1">
-                    Estimated Quote: {"ADD THE ESTIMATED COST HERE - JACOB"}
+                    Total Price:{" "}
+                    {quote.totalPrice > 0 ? quote.totalPrice : ""}
                   </div>
                 </div>
               </div>
