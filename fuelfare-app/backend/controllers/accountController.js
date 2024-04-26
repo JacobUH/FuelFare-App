@@ -9,12 +9,12 @@ const fetchUserData = async (req, res) => {
   try {
     const userId = req.user._id; // Assuming user ID is available in the request
 
-    console.log("User ID:", userId);
+    //console.log("User ID:", userId);
 
     // Find the user's setup information by ID
     const userSetup = await Setup.findOne({ credentials: userId });
 
-    console.log("User setup:", userSetup);
+    //console.log("User setup:", userSetup);
 
     // Check if the user setup information exists
     if (!userSetup) {
