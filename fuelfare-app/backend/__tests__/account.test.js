@@ -99,7 +99,16 @@ describe('updateAccount', () => {
       json: jest.fn()
     };
 
-    const mockUserSetup = { _id: 'userId', someData: 'example' };
+    const mockUserSetup = {
+      fullName: 'John Doe',
+        companyName: 'ABC Inc.',
+        companyAddress1: '123 Main Street',
+        companyAddress2: ' ',
+        city: 'New York',
+        state: 'NY',
+        country: 'United States',
+        zipCode: '10001'
+    };
     UserCredentials.findById.mockResolvedValueOnce({ _id: 'userId' });
     Setup.findOne.mockResolvedValueOnce(mockUserSetup);
     Setup.prototype.save.mockResolvedValueOnce(mockUserSetup);
