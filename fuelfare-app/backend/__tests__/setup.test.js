@@ -1,8 +1,8 @@
 const { setup } = require("../controllers/setupController");
 const Setup = require("../models/Setup");
-const bcrypt = require("bcrypt");
+const UserCredentials = require("../models/UserCredentials");
 
-jest.mock("bcrypt");
+jest.mock("../models/UserCredentials");
 jest.mock("../models/Setup");
 
 describe("setupController", () => {
@@ -10,11 +10,10 @@ describe("setupController", () => {
     jest.clearAllMocks();
   });
 
-  test("should create a new user successfully", async () => {
+  test("should create user information successfully", async () => {
     const req = {
       body: {
         email: "test@example.com",
-        password: "password123",
         fullName: "John Doe",
         companyName: "ABC Inc.",
         companyAddress1: "123 Main St",
@@ -30,20 +29,17 @@ describe("setupController", () => {
       json: jest.fn(),
     };
 
-    const hashedPassword = "hashedPassword123";
-    bcrypt.hash.mockResolvedValueOnce(hashedPassword);
+    const userCredentials = { _id: "userCredentialsId" };
+    UserCredentials.findOne.mockResolvedValueOnce(userCredentials);
 
-    const newUser = {
-      save: jest.fn().mockResolvedValueOnce(),
-    };
-    Setup.mockReturnValueOnce(newUser);
+    const newUserSetup = { save: jest.fn().mockResolvedValueOnce() };
+    Setup.mockReturnValueOnce(newUserSetup);
 
     await setup(req, res);
 
-    expect(bcrypt.hash).toHaveBeenCalledWith(req.body.password, 10);
+    expect(UserCredentials.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(Setup).toHaveBeenCalledWith({
-      email: req.body.email,
-      password: hashedPassword,
+      credentials: userCredentials._id,
       fullName: req.body.fullName,
       companyName: req.body.companyName,
       companyAddress1: req.body.companyAddress1,
@@ -53,26 +49,15 @@ describe("setupController", () => {
       country: req.body.country,
       zipCode: req.body.zipCode,
     });
-    expect(newUser.save).toHaveBeenCalled();
+    expect(newUserSetup.save).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(201);
-    expect(res.json).toHaveBeenCalledWith({
-      message: "User signed up successfully",
-    });
+    expect(res.json).toHaveBeenCalledWith({ message: "User information saved successfully" });
   });
 
-  test("should handle existing email", async () => {
+  test("should handle user credentials not found", async () => {
     const req = {
       body: {
         email: "test@example.com",
-        password: "password123",
-        fullName: "John Doe",
-        companyName: "ABC Inc.",
-        companyAddress1: "123 Main St",
-        companyAddress2: "",
-        city: "New York",
-        state: "NY",
-        country: "USA",
-        zipCode: "10001",
       },
     };
     const res = {
@@ -80,27 +65,19 @@ describe("setupController", () => {
       json: jest.fn(),
     };
 
-    Setup.findOne.mockResolvedValueOnce({ email: req.body.email });
+    UserCredentials.findOne.mockResolvedValueOnce(null);
 
     await setup(req, res);
 
+    expect(UserCredentials.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: "Email already exists" });
+    expect(res.json).toHaveBeenCalledWith({ error: "User credentials not found" });
   });
 
   test("should handle internal server error", async () => {
     const req = {
       body: {
         email: "test@example.com",
-        password: "password123",
-        fullName: "John Doe",
-        companyName: "ABC Inc.",
-        companyAddress1: "123 Main St",
-        companyAddress2: "",
-        city: "New York",
-        state: "NY",
-        country: "USA",
-        zipCode: "10001",
       },
     };
     const res = {
@@ -109,10 +86,11 @@ describe("setupController", () => {
     };
 
     const errorMessage = "Database error";
-    Setup.findOne.mockRejectedValueOnce(new Error(errorMessage));
+    UserCredentials.findOne.mockRejectedValueOnce(new Error(errorMessage));
 
     await setup(req, res);
 
+    expect(UserCredentials.findOne).toHaveBeenCalledWith({ email: req.body.email });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ error: "Internal server error" });
   });
