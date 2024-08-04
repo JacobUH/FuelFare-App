@@ -1,13 +1,13 @@
 # FuelFare: Find the best fuel prices for you.
 ### Created By: Team 1
-[![FuelFare Post](https://lh3.googleusercontent.com/drive-viewer/AKGpihbNy7giWQQtIhby9V6W5WzPQi89L9uNOHLBhd9lqY9RMHQDbsQ-KAWkeUBzsTN0iy_L815jRpjQxifJrmGq6zhuDCBV_gEfE_0=s1600-rw-v1)](https://www.figma.com/file/3TTFta2PAWYH9ojeR71HiL/FuelFare-Frontend-Design?type=design&node-id=0-1&mode=design&t=TWdWrl7VmbBlGbJO-0)
+[![FuelFare Post](https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Fuelfare%20Post%20Logo.png)](https://www.figma.com/file/3TTFta2PAWYH9ojeR71HiL/FuelFare-Frontend-Design?type=design&node-id=0-1&mode=design&t=TWdWrl7VmbBlGbJO-0)
 
 Welcome to the repository for FuelFare! Created at the University of Houston in the COSC 4353 Software Design class. This web application project is a collaboration of Team 1.
 
 You can check out the Figma here we used to design the interface of the web application: [FuelFare Figma](https://www.figma.com/file/3TTFta2PAWYH9ojeR71HiL/FuelFare-Frontend-Design?type=design&node-id=0-1&mode=design&t=TWdWrl7VmbBlGbJO-0)
 
 <p align="center">
-<img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYL1RJN9aMcKz5jMMlSVIczHEfCm9zSoWC6JrI46uhHNLYmoVBdpRlcxIDGGK5jjUcCYYAKbLGQHDXoqVQhbFZDRzEr652lwjg=s1600-rw-v1" alt="Figma" border="0" width="450" height="300">
+<img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/FuelFare%20Figma.png" alt="Figma" border="0" width="450" height="300">
 </p>
 
 ## Team Members
@@ -19,14 +19,14 @@ You can check out the Figma here we used to design the interface of the web appl
 ## Website Screenshots
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZkCjrzc2Lp7jF0u1LTBVfADs6YRbfArRmL8sGVqaaHw0wWo4hlkhEhi8VqsYqLhPPVACPOS2IKib9bbhaijQaOqOKRaUe1qBQ=s1600-rw-v1" alt="Home" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihajGccrqxdJf9_fjsPLs12_y5L6CMUfm31HLyTLF9CvkYr18fZwpih7jDdXu1TKZ2OwBNsgmzpmLbH0vhcrewjOybxkguq0ivk=s1600-rw-v1" alt="Access Portal" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYSF4X-ix4d-z_ZFDV3NnXCqalSfFhY-B2ZHp3MNx_3RcRsVHUM8zPlAFTOAmJJ7Dqj7oG-zHAeequlce-P_gybPd4DrldC2jI=s1600-rw-v1" alt="Create Account" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihaSYqalMU_kYtOZu_QB9Ac9_f6m-IT4bzHkK7moptBMyZ4LY8RhCL4v0Al-FzL4VAg26WvCHD-6HkbOJj7tD3wa6fF6stCpxEY=s1600-rw-v1" alt="Dashboard" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYdX5fwZfyaId5janWxuDAzoLx5RbedJv_6HuBZVV7ar6BXWhnJPEddglAgHNAgoBU18N3j75spNSJ7k15HLZCPjfxjjvkhLw=s1600-rw-v1" alt="Create Quote" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihbxJgTGTcaDXoSvAmjLnF4jqWC5Tv0z3UQ2PgQzlizQnce6OG0FGOpdqBkHsoVPA8wEakd02BIx8WqKY2vBShu8-dq1NJA4Ld8=s1600-rw-v1" alt="View Quote" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihbJsJ1zpXXaqYLrH8Kt5c5oxGKDHvS1p84ejp-gxyKH3NkATciiXhjCS4Ml-3WeLMk89bSJL5FqPq18d5R4vYTQPZMtrm10zuU=s1600-rw-v1" alt="History" border="0" width="400" height="250" style="margin-right: 60px;">
-  <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpiha4IMjC0KFHIiAOsUJ3IcY06zUuJSsIjbhAYMutRkQOJCcP9w8Xv_auWrlNroiZx0PkrLCY8aiakd8l9p64e2ovMguKbtuLXyw=s1600-rw-v1" alt="Update Account" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Home.png" alt="Home" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Access%20Portal.png" alt="Access Portal" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Create%20Account.png" alt="Create Account" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Dashboard.png" alt="Dashboard" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Create%20Quote.png" alt="Create Quote" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/View%20Quote.png" alt="View Quote" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/History.png" alt="History" border="0" width="400" height="250" style="margin-right: 60px;">
+  <img src="https://raw.githubusercontent.com/JacobUH/FuelFare-App/main/screenshots/Update%20Account.png" alt="Update Account" border="0" width="400" height="250" style="margin-right: 60px;">
 </p>
 
 ## Getting Started
